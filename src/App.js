@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import base from './base'
+import base, {auth} from './base'
+
+import SignIn from './SignIn'
+import SignOut from './SignOut'
 
 class App extends Component {
 
@@ -10,7 +13,9 @@ class App extends Component {
 
 
     this.state = {
-      colors: { green: 0 } //see Firebase 
+      colors: { green: 0 }, //see Firebase for complete object
+
+      uid: null
     }
   }
 
@@ -24,9 +29,46 @@ class App extends Component {
       }
     )
 
+    //Copied from noteherder
+    auth.onAuthStateChanged(
+           (user) => {
+                if(user){
+                    //We are already signed in
+                    this.authHandler(user);
+                }
+           }
+       )
   }
 
-  render() {
+    signedIn = () => {
+        return this.state.uid;
+    }
+
+    signOut = () => {
+        auth
+            .signOut()
+            .then(() => {
+                this.setState({ uid: null})
+            })
+        
+    }
+
+  authHandler = (userData) => {
+        this.setState(
+                    {uid: userData.uid}
+                     )
+        
+    }
+
+  render(){
+    return (
+     <div>
+         {this.signedIn() ? this.renderApp() : <SignIn/>}
+     </div>
+    );
+  }
+
+  renderApp() {
     return (
      <div>
         <p>Green counter: {this.state.colors.green} </p>
@@ -35,6 +77,8 @@ class App extends Component {
         <button onClick = {() => this.increment('green')}>Increase green counter</button>
         <button onClick = {() => this.increment('yellow')}>Increase yellow counter</button>
         <button onClick = {() => this.increment('red')}>Increase red counter</button>
+
+        <SignOut signOut = {this.signOut}/>
       </div>
     );
   }
