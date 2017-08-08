@@ -5,19 +5,49 @@ import base from './base'
 
 class App extends Component {
 
+  constructor() {
+    super()
+
+
+    this.state = {
+      colors: { green: 0 } //see Firebase 
+    }
+  }
+
+  componentDidMount(){
+
+    base.syncState(
+      'colors',
+      {
+        context: this,
+        state: 'colors'
+      }
+    )
+
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+     <div>
+        <p>Green counter: {this.state.colors.green} </p>
+        <p>Yellow counter: {this.state.colors.yellow} </p>
+        <p>Red counter: {this.state.colors.red} </p>
+        <button onClick = {() => this.increment('green')}>Increase green counter</button>
+        <button onClick = {() => this.increment('yellow')}>Increase yellow counter</button>
+        <button onClick = {() => this.increment('red')}>Increase red counter</button>
       </div>
     );
   }
+
+  increment(color){
+    const count = this.state.colors[color]
+
+    let colors = this.state.colors
+    colors[color] = count + 1
+
+    this.setState({colors})
+  }
+
 }
 
 export default App;
