@@ -16,6 +16,8 @@ class App extends Component {
       colors: { green: 0 }, //see Firebase for complete object
 
       uid: null,
+
+      possessions: {points: 0}
     }
   }
 
@@ -61,13 +63,44 @@ class App extends Component {
 
   authHandler = (userData) => {
         this.setState(
-                    {uid: userData.uid}, () => base.update(`users/${this.state.uid}`, {
-      data: {points: 'a'}
-    }
-    )
+                    {uid: userData.uid},
+                      this.syncUserPossessions
                      )
         
-    }
+  }
+
+  syncUserPossessions = () => {
+   
+
+
+     base.fetch(`users/${this.state.uid}`, {
+      context: this,
+    }).then(data => {
+
+
+      //Checks if data is an empty object (no user data found)
+      if(Object.keys(data).length === 0 && data.constructor === Object){
+        base.update(`users/${this.state.uid}`, {
+          data: this.state.possessions
+         }
+         );
+      }
+
+      base.syncState(
+      `users/${this.state.uid}`,
+      {
+        context: this,
+        state: 'possessions'
+      }
+    )
+
+    }).catch(error => {
+
+    })
+
+  
+  }
+
 
   render(){
     return (
