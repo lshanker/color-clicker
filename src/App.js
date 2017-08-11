@@ -120,9 +120,17 @@ class App extends Component {
         <button onClick = {() => this.increment('yellow')}>Increase yellow counter</button>
         <button onClick = {() => this.increment('red')}>Increase red counter</button>
 
+        <button onClick = {() => this.changeState()}>Change points </button>
+
         <SignOut signOut = {this.signOut}/>
       </div>
     );
+  }
+
+  changeState(){
+    let possessions = this.state.possessions
+    possessions.points = 5
+    this.setState({possessions})
   }
 
   increment(color){
