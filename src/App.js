@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       colors: { green: 0 }, //see Firebase for complete object
 
-      uid: null
+      uid: null,
     }
   }
 
@@ -29,8 +29,14 @@ class App extends Component {
       }
     )
 
+    
+
     //Copied from noteherder
-    auth.onAuthStateChanged(
+   
+  }
+
+  componentWillMount(){
+     auth.onAuthStateChanged(
            (user) => {
                 if(user){
                     //We are already signed in
@@ -55,7 +61,10 @@ class App extends Component {
 
   authHandler = (userData) => {
         this.setState(
-                    {uid: userData.uid}
+                    {uid: userData.uid}, () => base.update(`users/${this.state.uid}`, {
+      data: {points: 'a'}
+    }
+    )
                      )
         
     }
