@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import base, {auth} from './base'
 
 import SignIn from './SignIn'
 import SignOut from './SignOut'
+import Header from './Header'
+import Nav from './Nav'
+import ButtonPage from './ButtonPage'
 
 class App extends Component {
 
@@ -17,7 +19,7 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {points: 0}
+      possessions: {points: 0, color: 'green'}
     }
   }
 
@@ -113,19 +115,15 @@ class App extends Component {
   renderApp() {
     return (
      <div>
-        <p>Green counter: {this.state.colors.green} </p>
-        <p>Yellow counter: {this.state.colors.yellow} </p>
-        <p>Red counter: {this.state.colors.red} </p>
-        <button onClick = {() => this.increment('green')}>Increase green counter</button>
-        <button onClick = {() => this.increment('yellow')}>Increase yellow counter</button>
-        <button onClick = {() => this.increment('red')}>Increase red counter</button>
-
-        <button onClick = {() => this.changeState()}>Change points </button>
-
-        <SignOut signOut = {this.signOut}/>
+        <Header signOut = {this.signOut}/>
+        <ButtonPage/>
+        <Nav/>
+      
       </div>
     );
   }
+
+
 
   changeState(){
     let possessions = this.state.possessions

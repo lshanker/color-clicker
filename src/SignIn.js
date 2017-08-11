@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './SignIn.css'
 import {auth, googleProvider} from './base'
 
 const SignIn = () => {
@@ -10,7 +11,7 @@ const SignIn = () => {
  }
 
  return(
-     <div>
+     <div className = 'SignIn'>
         <button
             className = "SignIn"
             onClick = {authenticateGoogle}

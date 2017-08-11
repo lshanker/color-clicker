@@ -1,0 +1,34 @@
+div.buttonPage{
+    width: 94%;
+    height: 100vh;
+    
+    margin-left: 6%;
+
+    text-align: center;
+}
+
+
+button.bigButton{
+    width: 200px;
+    height: 200px;
+    background-color: #89b416;
+    border-radius: 200px;
+
+    margin-top: 20vh;
+}
+
+button.bigButton p{
+    text-align: center;
+    vertical-align: middle;
+    
+    color: white;
+}
+
+p.pointCount{
+    color: #89b416;
+    font-size: 40px;
+
+    float: right;
+    margin-top: 600px;
+}
+
