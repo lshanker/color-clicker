@@ -9,6 +9,7 @@ class Nav extends Component{
     render(){
         return(
             <div className = 'nav'>
+                <div className = "coverShadow"></div>
                 <div className = "title"><p>Color Clicker</p><img src={require('./images/mouse-hand.png')} /></div>
                 <div className = "border"></div>
                 <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>
