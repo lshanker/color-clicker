@@ -32,3 +32,6 @@ p.pointCount{
     margin-top: 600px;
 }
 
+button.giveButton{
+    background-color: gray
+}
