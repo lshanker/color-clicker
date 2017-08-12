@@ -62,6 +62,7 @@ class App extends Component {
     }
 
     signOut = () => {
+      console.log('here')
         auth
             .signOut()
             .then(() => {
