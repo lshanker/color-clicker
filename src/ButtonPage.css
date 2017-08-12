@@ -73,6 +73,27 @@ button.giveButton{
     color: green;
 }
 
+p.score{
+    color: white;
+    background: #D3BF00;
+    
+    font-size: 16px;
+    font-family: 'Pacifico', cursive;
+    line-height: 26px;
+
+    margin-top: 15px;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 2px;
+
+    float: right;
+
+    
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
 .fa-sign-out{
     color: white;
 }

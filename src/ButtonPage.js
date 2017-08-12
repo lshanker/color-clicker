@@ -16,8 +16,8 @@ class ButtonPage extends Component{
                     <div className = "pointContainer">
                         <p className = "pointCount">Points: {this.props.possessions.points}</p>
                         <button className = "giveButton" onClick = {() => {this.props.incrementTeam(this.props.possessions.color, this.props.possessions.points)}}>Give points to team <i className="fa fa-hand-o-right" aria-hidden="true"></i></button>
+                        <p className = "score">Your Score: {this.props.possessions.given}</p>
                     </div>
-                    <p className = "score">Your Score: {this.props.possessions.given}______</p>
                     <p className = "teamCount">Team Points: {this.props.colors[this.props.possessions.color]}______</p>
                 </div>
                 
