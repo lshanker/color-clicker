@@ -23,7 +23,7 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {points: 0, color: 'green'}
+      possessions: {points: 0, color: 'green', given: 0}
     }
   }
 
@@ -92,12 +92,10 @@ class App extends Component {
          }
          );
       }else{
-        console.log('Found Data')
         base.fetch(`users/${this.state.uid}`, {
           context: this,
           asArray: false,
           then(data){
-            console.log(data)
             this.setState({possessions: data})
           }
         });
@@ -128,7 +126,8 @@ class App extends Component {
             this.signedIn()
               ?<div><Header signOut = {this.signOut}/>
               <ButtonPage possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
-              <Nav history={this.props.history}/></div>
+              <Nav history={this.props.history}/>
+              </div>
               : <Redirect to="/sign-in"/>
           )} />
           <Route path="/sign-in" render={() => (
@@ -165,13 +164,17 @@ class App extends Component {
     this.setState({possessions})
   }
 
-  incrementTeam(color){
+  incrementTeam = (color, points) => {
+
     const count = this.state.colors[color]
 
     let colors = this.state.colors
-    colors[color] = count + 1
+    colors[color] = count + points
 
-    this.setState({colors})
+    let possessions = this.state.possessions
+    possessions.points = 0
+    possessions.given+=points
+    this.setState({colors, possessions})
   }
 
 }
