@@ -1,11 +1,16 @@
 div.buttonPage{
-    margin-top: 40px;
-
-    text-align: center;
-
+    padding-top: 40px;
     float: right;
-    width: calc(100% - 200px)
-    
+    width: calc(100% - 200px);
+}
+
+div.buttonContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;    
+
+    height: 550px;
 }
 
 
@@ -14,8 +19,6 @@ button.bigButton{
     height: 300px;
     background-color: green;
     border-radius: 300px;
-
-    margin-top: 20vh;
 }
 
 button:hover{
@@ -29,16 +32,45 @@ button.bigButton p{
     color: white;
 }
 
-p.pointCount{
-    color: #89b416;
-    font-size: 40px;
-
+div.pointContainer{
+    width: 220px;
     float: right;
-    margin-top: 600px;
+    overflow: hidden;
 }
 
+p.pointCount{
+    color: white;
+    background: green;
+    font-size: 30px;
+
+    font-family: 'Bungee', cursive;
+
+    padding: 10px;
+    padding-left: 15px;
+    
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    
+    width: 210px;
+}
+
+
 button.giveButton{
-    background-color: gray
+
+    font-family: 'Bungee', cursive;
+    font-size: 13px;
+
+    width: 212px;
+
+    padding: 10px;
+    padding-left: 15px;
+
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    float: right;
+
+    border: 1px solid green;
+    color: green;
 }
 
 .fa-sign-out{
