@@ -125,7 +125,9 @@ class App extends Component {
           <Route path="/home" render={() => (
             this.signedIn()
               ?<div><Header signOut = {this.signOut}/>
-              <ButtonPage possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
+              <ButtonPage 
+              possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
+              colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>
               <Nav history={this.props.history}/>
               </div>
               : <Redirect to="/sign-in"/>
