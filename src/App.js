@@ -9,6 +9,7 @@ import SignOut from './SignOut'
 import Header from './Header'
 import Nav from './Nav'
 import ButtonPage from './ButtonPage'
+import Shop from './Shop'
 
 class App extends Component {
 
@@ -127,15 +128,22 @@ class App extends Component {
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
               colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>
-              <Nav/></div>
+              <Nav history={this.props.history}/>
+              </div>
               : <Redirect to="/sign-in"/>
           )} />
           <Route path="/sign-in" render={() => (
             !this.signedIn()
               ?<SignIn />
               :<Redirect to="/home" />
+            )} />
+        <Route path="/shop" render={() => (
+            this.signedIn()
+              ?<div><Header signOut = {this.signOut}/>
+              <Shop />
+              <Nav history={this.props.history}/></div>
+              : <Redirect to="/sign-in"/>
           )} />
-          )}
 
           <Route render={() => <Redirect to="/home" />} />
         </Switch>

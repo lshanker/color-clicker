@@ -9,7 +9,7 @@ class Nav extends Component{
     render(){
         return(
             <div className = 'nav'>
-                <div className = 'menuOption'><p className = 'menuOptionText'>Shop</p></div>
+                <div className = 'menuOption' onClick={() => this.props.history.push('/shop')} ><p  className = 'menuOptionText'>Shop</p></div>
                 <div className = 'menuOption'><p className = 'menuOptionText'>Scoreboard</p></div>
                 <div className = 'menuOption'><p className = 'menuOptionText'>Loan</p></div>
                 <div className = 'menuOption'><p className = 'menuOptionText'>Profile</p></div>
