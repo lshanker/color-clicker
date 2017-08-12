@@ -29,7 +29,7 @@ p.title{
     min-width: 200px;
 }
 
-p.title:hover{
+p:hover{
     cursor: pointer;
 }
 
