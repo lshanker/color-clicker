@@ -18,7 +18,6 @@ div.nav{
 div.coverShadow{
     height: 40px;
     width: 50px;
-    background-color: green;
 
     position: absolute;
     top: 0;
@@ -59,7 +58,6 @@ div.title{
 }
 
 div.title p{
-    color: green;
     font-family: 'Bungee', cursive;
     font-size: 28px;
     width: 150px;
@@ -82,5 +80,5 @@ img {
 }
 
 div.border{
-    border-top: 2px solid green;
+    border-top: 2px solid;
 }
