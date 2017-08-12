@@ -3,15 +3,15 @@ import './App.css'
 import './Nav.css'
 import './ButtonPage.css'
 
-class Shop extends Component {
+class Loan extends Component {
     constructor () {
         super()
     }
 
     render(){
         return(
-        <a>shop</a>
+        <a>loan</a>
         )}
 }
 
-export default Shop
+export default Loan

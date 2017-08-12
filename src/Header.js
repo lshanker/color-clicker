@@ -9,7 +9,7 @@ class Header extends Component{
     render(){
         return(
             <div className = 'header'>
-                <p className = 'title'>Color Clicker</p>
+                <p className = 'title' onClick={() => this.props.history.push('/home')}>Color Clicker</p>
                 <button className = 'logOut' onClick = {this.props.signOut}>Log Out <i className="fa fa-sign-out"></i></button>
             </div>
         )

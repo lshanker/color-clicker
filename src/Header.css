@@ -19,6 +19,10 @@ p.title{
     margin-left: 10px
 }
 
+p.title:hover{
+    cursor: pointer;
+}
+
 button.logOut{
     height: 40px;
     color: white;

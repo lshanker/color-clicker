@@ -10,6 +10,9 @@ import Header from './Header'
 import Nav from './Nav'
 import ButtonPage from './ButtonPage'
 import Shop from './Shop'
+import Scoreboard from './Scoreboard'
+import Loan from './Loan'
+import Profile from './Profile'
 
 class App extends Component {
 
@@ -124,7 +127,7 @@ class App extends Component {
         <Switch>
           <Route path="/home" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
               colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>
@@ -139,8 +142,32 @@ class App extends Component {
             )} />
         <Route path="/shop" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
               <Shop />
+              <Nav history={this.props.history}/></div>
+              : <Redirect to="/sign-in"/>
+          )} />
+
+          <Route path="/scoreboard" render={() => (
+            this.signedIn()
+              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              <Scoreboard />
+              <Nav history={this.props.history}/></div>
+              : <Redirect to="/sign-in"/>
+          )} />
+
+          <Route path="/loan" render={() => (
+            this.signedIn()
+              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              <Loan />
+              <Nav history={this.props.history}/></div>
+              : <Redirect to="/sign-in"/>
+          )} />
+
+          <Route path="/profile" render={() => (
+            this.signedIn()
+              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              <Profile />
               <Nav history={this.props.history}/></div>
               : <Redirect to="/sign-in"/>
           )} />
