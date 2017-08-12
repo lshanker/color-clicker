@@ -10,6 +10,7 @@ import ButtonPage from './ButtonPage'
 
 class App extends Component {
 
+
   constructor() {
     super()
 
@@ -58,7 +59,8 @@ class App extends Component {
         auth
             .signOut()
             .then(() => {
-                this.setState({ uid: null})
+                base.removeBinding(this.ref)
+                this.setState({ uid: null, possessions: {points: 0, color: 'green'}})
             })
         
     }
@@ -86,9 +88,19 @@ class App extends Component {
           data: this.state.possessions
          }
          );
+      }else{
+        console.log('Found Data')
+        base.fetch(`users/${this.state.uid}`, {
+          context: this,
+          asArray: false,
+          then(data){
+            console.log(data)
+            this.setState({possessions: data})
+          }
+        });
       }
 
-      base.syncState(
+      this.ref = base.syncState(
       `users/${this.state.uid}`,
       {
         context: this,
@@ -116,7 +128,7 @@ class App extends Component {
     return (
      <div>
         <Header signOut = {this.signOut}/>
-        <ButtonPage possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
+        <ButtonPage color = {this.state.colors} possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
         <Nav/>
       
       </div>
