@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import base, {auth} from './base'
 
+import { Route, Switch, Redirect } from 'react-router-dom'
+
 import SignIn from './SignIn'
 import SignOut from './SignOut'
 import Header from './Header'
@@ -107,22 +109,26 @@ class App extends Component {
   render(){
     return (
      <div>
-         {this.signedIn() ? this.renderApp() : <SignIn/>}
-     </div>
-    );
-  }
+        <Switch>
+          <Route path="/home" render={() => (
+            this.signedIn()
+              ?<div><Header signOut = {this.signOut}/>
+              <ButtonPage possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
+              <Nav/></div>
+              : <Redirect to="/sign-in"/>
+          )} />
+          <Route path="/sign-in" render={() => (
+            !this.signedIn()
+              ?<SignIn />
+              :<Redirect to="/home" />
+          )} />
+          )}
 
-  renderApp() {
-    return (
-     <div>
-        <Header signOut = {this.signOut}/>
-        <ButtonPage possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
-        <Nav/>
-      
+          <Route render={() => <Redirect to="/home" />} />
+        </Switch>
       </div>
     );
   }
-
 
 
   changeState(){
