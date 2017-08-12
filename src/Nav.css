@@ -1,29 +1,76 @@
 div.nav{
-    background-color: #686d75;
+    background-color: #FFFFFF;
     
     padding-top: 100px;
+
 
     vertical-align: top;
 
     float: left;
-    width: 100px;
+    width: 200px;
+    height: 100vh;
 
     overflow: hidden;
+
+    box-shadow: 5px 0px 20px #E3E3E3;
 }
 
 div.menuOption{
     width: 100%;
-    height: 80px;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    height: 50px;
+
+    transition: 0.3s;
 }
 
 p.menuOptionText{
     text-align: center;
     vertical-align: middle;
-    line-height: 80px;
+    line-height: 50px;
+
+    color: black;
+
+    font-family: 'Rubik', sans-serif;
 }
 
-p.menuOptionText:hover {
-    cursor:pointer
+div.menuOption:hover {
+    cursor: pointer;
+    color: green;
+    box-shadow: 0px 0px 10px #6F6F6F;
+
+    transition: .3s;
+}
+
+div.title{
+    position: absolute;
+    top: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 200px;
+}
+
+div.title p{
+    color: green;
+    font-family: 'Bungee', cursive;
+    font-size: 28px;
+    width: 150px;
+    display: inline-block;
+    line-height: 30px;
+}
+
+i {
+    margin-right: 5px;
+    margin-left: 10px;
+    color: black;
+}
+
+
+img {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+div.border{
+    border-top: 2px solid green;
 }

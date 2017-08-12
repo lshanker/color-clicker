@@ -9,10 +9,13 @@ class Nav extends Component{
     render(){
         return(
             <div className = 'nav'>
-                <div className = 'menuOption' onClick={() => this.props.history.push('/shop')} ><p  className = 'menuOptionText'>Shop</p></div>
-                <div className = 'menuOption' onClick={() => this.props.history.push('/scoreboard')}><p className = 'menuOptionText'>Scoreboard</p></div>
-                <div className = 'menuOption' onClick={() => this.props.history.push('/loan')}><p className = 'menuOptionText' >Loan</p></div>
-                <div className = 'menuOption' onClick={() => this.props.history.push('/profile')}><p className = 'menuOptionText'>Profile</p></div>
+                <div className = "title"><p>Color Clicker</p><img src={require('./images/mouse-hand.png')} /></div>
+                <div className = "border"></div>
+                <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>
+                <div className = 'menuOption' onClick={() => this.props.history.push('/shop')} ><p  className = 'menuOptionText'><i className="fa fa-money"></i>Shop</p></div>
+                <div className = 'menuOption' onClick={() => this.props.history.push('/scoreboard')}><p className = 'menuOptionText'><i className="fa fa-bar-chart" aria-hidden="true"></i>Scoreboard</p></div>
+                <div className = 'menuOption' onClick={() => this.props.history.push('/loan')}><p className = 'menuOptionText' ><i className="fa fa-university" aria-hidden="true"></i>Loan</p></div>
+                <div className = 'menuOption' onClick={() => this.props.history.push('/profile')}><p className = 'menuOptionText'><i className="fa fa-user" aria-hidden="true"></i>Profile</p></div>
             </div>
         )
     }
