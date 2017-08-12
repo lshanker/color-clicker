@@ -1,5 +1,5 @@
 div.buttonPage{
-    padding-top: 40px;
+    margin-top: 40px;
     float: right;
     width: calc(100% - 200px);
 }
