@@ -1,10 +1,11 @@
 div.buttonPage{
-    width: 94%;
-    height: 100vh;
-    
-    margin-left: 6%;
+
 
     text-align: center;
+
+    float: right;
+    width: calc(100% - 200px)
+    
 }
 
 
@@ -12,7 +13,7 @@ button.bigButton{
     width: 200px;
     height: 200px;
     background-color: #89b416;
-    border-radius: 200px;
+    border-radius: 100px;
 
     margin-top: 20vh;
 }
@@ -38,4 +39,8 @@ p.pointCount{
 
 button.giveButton{
     background-color: gray
+}
+
+.fa-sign-out{
+    color: white;
 }

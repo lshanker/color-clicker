@@ -5,33 +5,42 @@ div.header{
     height: 40px;
     background-color: #89b416;
 
+    vertical-align: middle;
+
     box-shadow: 0px 5px 10px gray;
+
+    overflow: hidden;
 }
 
 p {
     color: white;
+    display: inline-block;
 }
 
 p.title{
     font-size: 40px;
-    display: inline-block;
-    width: 90%;
-    margin-left: 10px
+    width: 93%;
+    margin-left: 10px;
+    min-width: 200px;
 }
 
 p.title:hover{
     cursor: pointer;
 }
 
-button.logOut{
+p.logOut{
     height: 40px;
     color: white;
-    display: inline-block;
+
+    vertical-align: middle;
 
     transition: .5s;
+
+    margin-top: -20px;
+    padding-top: 20px;
 }
 
-button.logOut:hover{
+p.logOut:hover{
     background-color: red;
     transition: .5s;
 }
