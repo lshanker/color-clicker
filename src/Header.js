@@ -10,7 +10,7 @@ class Header extends Component{
         return(
             <div className = 'header'>
                 <p className = 'title'>Color Clicker</p>
-                <button className = 'logOut' onClick = {this.props.signOut}>Log Out <i class="fa fa-sign-out"></i></button>
+                <button className = 'logOut' onClick = {this.props.signOut}>Log Out <i className="fa fa-sign-out"></i></button>
             </div>
         )
     }

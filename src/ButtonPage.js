@@ -9,8 +9,8 @@ class ButtonPage extends Component{
     render(){
         return(
             <div className = 'buttonPage'>
-                <button className = "bigButton"><p>Click Here!</p></button>
-                <p className = "pointCount">Points: 50</p>
+                <button className = "bigButton" onClick = {this.props.incrementPoints}><p>Click Here!</p></button>
+                <p className = "pointCount">Points: {this.props.possessions.points}</p>
             </div>
         )
     }

@@ -116,7 +116,7 @@ class App extends Component {
     return (
      <div>
         <Header signOut = {this.signOut}/>
-        <ButtonPage/>
+        <ButtonPage possessions = {this.state.possessions} incrementPoints = {this.incrementPoints}/>
         <Nav/>
       
       </div>
@@ -131,7 +131,13 @@ class App extends Component {
     this.setState({possessions})
   }
 
-  increment(color){
+  incrementPoints = () => {
+    let possessions = this.state.possessions
+    ++possessions.points
+    this.setState({possessions})
+  }
+
+  incrementTeam(color){
     const count = this.state.colors[color]
 
     let colors = this.state.colors
