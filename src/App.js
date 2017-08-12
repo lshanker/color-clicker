@@ -26,7 +26,9 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {points: 0, color: 'green', given: 0}
+      possessions: {points: 0, color: 'green', given: 0},
+
+      currentWinner: "green"
     }
   }
 
@@ -39,6 +41,8 @@ class App extends Component {
         state: 'colors'
       }
     )
+
+    this.setState({currentWinner: "yellow"})
 
     
 
@@ -128,11 +132,11 @@ class App extends Component {
         <Switch>
           <Route path="/home" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
               colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>
-              <Nav history={this.props.history}/>
+              <Nav history={this.props.history} currentWinner={this.state.currentWinner} />
               </div>
               : <Redirect to="/sign-in"/>
           )} />
@@ -143,33 +147,33 @@ class App extends Component {
             )} />
         <Route path="/shop" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Shop />
-              <Nav history={this.props.history}/></div>
+              <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
           )} />
 
           <Route path="/scoreboard" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Scoreboard />
-              <Nav history={this.props.history}/></div>
+              <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
           )} />
 
           <Route path="/loan" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Loan />
-              <Nav history={this.props.history}/></div>
+              <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
           )} />
 
           <Route path="/profile" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history}/>
+              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Profile />
-              <Nav history={this.props.history}/></div>
+              <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
           )} />
 

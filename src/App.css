@@ -75,3 +75,26 @@ html {
   font-family: 'Rubik', sans-serif;
 }
 
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: gold;
+}
+
+.greenText {
+  color: green;
+}
+
+.blueText {
+  color: blue;
+}
+
+.yellowText {
+  color: gold;
+}
