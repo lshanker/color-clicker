@@ -17,6 +17,10 @@ button.bigButton{
     margin-top: 20vh;
 }
 
+button:hover{
+    cursor:pointer
+}
+
 button.bigButton p{
     text-align: center;
     vertical-align: middle;
