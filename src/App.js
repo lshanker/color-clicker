@@ -139,8 +139,6 @@ class App extends Component {
 
           <Route render={() => <Redirect to="/home" />} />
         </Switch>
-
-         {this.signedIn() ? this.renderApp() : <SignIn/>}
      </div>
     );
   }
