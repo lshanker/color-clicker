@@ -22,7 +22,7 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {points: 0, color: 'green'}
+      possessions: {points: 0, color: 'green', given: 0}
     }
   }
 
@@ -167,6 +167,7 @@ class App extends Component {
 
     let possessions = this.state.possessions
     possessions.points = 0
+    possessions.given+=points
     this.setState({colors, possessions})
   }
 
