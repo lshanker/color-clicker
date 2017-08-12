@@ -74,8 +74,7 @@ button.giveButton{
 }
 
 p.score{
-    color: white;
-    background: #D3BF00;
+    color: green;
     
     font-size: 16px;
     font-family: 'Pacifico', cursive;
@@ -89,6 +88,7 @@ p.score{
 
     float: right;
 
+    box-shadow: 0px 0px 5px green inset;
     
     border-top-left-radius: 13px;
     border-bottom-left-radius: 13px;
