@@ -42,7 +42,8 @@ class App extends Component {
       }
     )
 
-    this.setState({currentWinner: "yellow"})
+    //change to test current winner
+    this.setState({currentWinner: "blue"})
 
     
 

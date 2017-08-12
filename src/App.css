@@ -98,3 +98,15 @@ html {
 .yellowText {
   color: gold;
 }
+
+.greenBorder {
+  border-right: 1px solid green;
+}
+
+.blueBorder {
+  border-right: 1px solid blue;
+}
+
+.yellowBorder {
+  border-right: 1px solid gold;
+}
