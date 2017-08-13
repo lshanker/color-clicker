@@ -16,11 +16,13 @@ class Scoreboard extends Component {
         })
 
          var rows = [];
-         var i = 0;
+
+         var c = 1;
 
          this.props.leaderboard.forEach(function(value, i){ 
-            rows.push(<TableRow key = {i} rank = {i} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()}/>)
-         })
+            rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()}/>)
+            c++
+        })
 
         return(
             <div className = "scoreboardContainer">
@@ -36,6 +38,7 @@ class Scoreboard extends Component {
                 </table>
             </div>
         )}
+
 }
 
 export default Scoreboard

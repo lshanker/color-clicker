@@ -158,6 +158,16 @@ class App extends Component {
       }
     )
 
+    this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
+
+    base.syncState(
+      `leaderboard/${this.state.uid}`,
+      {
+        context: this,
+        state: 'leaderboardInfo'
+      }
+    )
+
     }).catch(error => {
 
     })
@@ -250,6 +260,10 @@ class App extends Component {
     possessions.points = 0
     possessions.given+=points
     this.setState({colors, possessions})
+
+    let leaderboardInfo = this.state.leaderboardInfo
+    leaderboardInfo.score-=points
+    this.setState({leaderboardInfo})
   }
 
 }
