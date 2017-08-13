@@ -26,6 +26,8 @@ class App extends Component {
     this.state = {
       colors: { green: 0 }, //see Firebase for complete object
 
+      colorScores: [],
+
       uid: null,
 
       possessions: {points: 0, color: 'green', given: 0},
@@ -53,7 +55,9 @@ class App extends Component {
         colorScores.push(data.key)
       });
       console.log(colorScores[colorScores.length-1])
-      let currentWinner = colorScores[colorScores.length-1]
+      colorScores = colorScores.reverse();
+      let currentWinner = colorScores[0]
+      this.setState({colorScores})
       this.setState({currentWinner})
     })    
 
@@ -151,7 +155,7 @@ class App extends Component {
         <Switch>
           <Route path="/home" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
               colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>

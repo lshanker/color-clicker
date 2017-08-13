@@ -58,3 +58,9 @@ p.logOut:hover{
     transition: .5s;
 }
 
+div.squareContainer{
+    width: 500px;
+    height: 40px;
+    margin-left: 400px;
+}
+

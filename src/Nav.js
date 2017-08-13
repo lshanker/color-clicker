@@ -9,7 +9,7 @@ class Nav extends Component{
     render(){
         return(
             <div className = {`nav ${this.props.currentWinner}Border`}>
-                <div className = {`coverShadow ${this.props.currentWinner}`}></div>
+                <div className = {`coverShadow ${this.props.currentWinner}`}>  <div className = "time"><p>Time Remaining: 7d:0h:0m</p></div></div>
                 <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className={`${this.props.currentWinner}Text`}>Color Clicker</p><img src={require('./images/mouse-hand.png')} /></div>
                 <div className = {`border ${this.props.currentWinner}Text`}></div>
                 <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>

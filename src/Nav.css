@@ -19,11 +19,13 @@ div.nav{
 
 div.coverShadow{
     height: 40px;
-    width: 50px;
+    width: 100px;
 
     position: absolute;
     top: 0;
     margin-left: 200px;
+
+    overflow: visible;
 }
 
 div.menuOption{
@@ -83,4 +85,14 @@ img {
 
 div.border{
     border-top: 2px solid;
+}
+
+div.time{
+    display: inline-block;
+    text-align: center;
+    overflow: visible;
+}
+
+div.time p {
+    line-height: 40px;
 }

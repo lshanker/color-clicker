@@ -1,0 +1,23 @@
+div.scoreSquareContainer {
+    height: 40px;
+    padding-left: 10px;
+    
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+}
+
+div.coloredSquare {
+    /*background-color: green;*/
+    border: 2px solid white;
+
+    display: inline-block;
+    margin-right: 7px;
+
+    box-shadow: 5px 3px 6px #7D7D7D;
+}
+
+div.squareContainer p {
+    color: white;
+    display: inline-block;
+}
