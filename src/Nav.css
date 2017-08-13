@@ -19,7 +19,8 @@ div.nav{
 
 div.coverShadow{
     height: 40px;
-    width: 100px;
+   
+    padding-left: 20px;
 
     position: absolute;
     top: 0;
