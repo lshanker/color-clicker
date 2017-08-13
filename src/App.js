@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import firebase from 'firebase/app'
+import 'firebase/database'
 import base, {auth} from './base'
 
 import { Route, Switch, Redirect } from 'react-router-dom'
@@ -42,12 +44,22 @@ class App extends Component {
       }
     )
 
-    //change to test current winner
-    this.setState({currentWinner: "blue"})
+    var colorRef = firebase.database().ref('colors/');
+    colorRef.orderByValue().on('value', (data) => {
+       
+      var colorScores = [];      
+      data.forEach(function(data) {
+        console.log("The " + data.key + " rating is " + data.val());
+        colorScores.push(data.key)
+      });
+      console.log(colorScores[colorScores.length-1])
+      let currentWinner = colorScores[colorScores.length-1]
+      this.setState({currentWinner})
+    })    
 
-    
+   
 
-    //Copied from noteherder
+
    
   }
 
@@ -80,9 +92,15 @@ class App extends Component {
   authHandler = (userData) => {
         this.setState(
                     {uid: userData.uid},
-                      this.syncUserPossessions
+                      this.syncUserPossessions,
+                      this.syncWinner
                      )
         
+  }
+
+  syncWinner = () => {
+
+    
   }
 
   syncUserPossessions = () => {
