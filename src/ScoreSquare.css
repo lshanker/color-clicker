@@ -1,5 +1,5 @@
 div.scoreSquareContainer {
-    height: 40px;
+    height: 36px;
     padding-left: 10px;
     
     display: inline-flex;
@@ -12,12 +12,12 @@ div.coloredSquare {
     border: 2px solid white;
 
     display: inline-block;
-    margin-right: 7px;
+    margin-right: 8px;
 
-    box-shadow: 5px 3px 6px #7D7D7D;
+    box-shadow: 5px 3px 8px #CBCBCB;
 }
 
 div.squareContainer p {
-    color: white;
+    color: black;
     display: inline-block;
 }

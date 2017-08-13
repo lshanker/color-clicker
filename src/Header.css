@@ -59,9 +59,19 @@ p.logOut:hover{
 }
 
 div.squareContainer{
-    width: 500px;
-    height: 40px;
+    width: 300px;
+    height: 36px;
     margin-left: 450px;
+
+    background-color: white;
+    border-top: 2px solid green;
+
+    border-radius: 20px;
+
+    padding-left: 10px;
+
+    display: flex;
+    align-items: center;
 }
 
 
