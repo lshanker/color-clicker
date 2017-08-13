@@ -1,0 +1,32 @@
+div.scoreboardContainer{
+    margin-top: 40px;
+    float: right;
+    width: calc(100% - 200px);
+
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+h1.leader{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: green;
+}
+
+table{
+    display: block;
+}
+
+tr{
+    border-bottom: 1px solid black;
+}
+
+td{
+    border-right: 1px solid black;
+}
+
+td:last-child{
+    border-right: 0px;
+}

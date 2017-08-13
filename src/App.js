@@ -30,9 +30,13 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {points: 0, color: 'green', given: 0},
+      possessions: {username: "lshanker", points: 0, color: 'green', given: 0},
 
-      currentWinner: "green"
+      leaderboardInfo: {username: "lshanker", score: 0, color: "green"},
+      leaderboard: {},
+
+      currentWinner: "green",
+
     }
   }
 
@@ -51,7 +55,6 @@ class App extends Component {
        
       var colorScores = [];      
       data.forEach(function(data) {
-        console.log("The " + data.key + " rating is " + data.val());
         colorScores.push(data.key)
       });
       console.log(colorScores[colorScores.length-1])
@@ -60,6 +63,15 @@ class App extends Component {
       this.setState({colorScores})
       this.setState({currentWinner})
     })    
+
+
+    var scoreRef = firebase.database().ref('leaderboard/');
+    scoreRef.orderByChild("score").limitToFirst(100).on('value', (data) =>{
+      this.setState({leaderboard: data})
+    })
+
+   
+    
 
    
 
@@ -122,6 +134,12 @@ class App extends Component {
           data: this.state.possessions
          }
          );
+
+         base.update(`leaderboard/${this.state.uid}`, {
+           data: this.state.leaderboardInfo
+         });
+
+        
       }else{
         base.fetch(`users/${this.state.uid}`, {
           context: this,
@@ -170,7 +188,7 @@ class App extends Component {
             )} />
         <Route path="/shop" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Shop />
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
@@ -178,15 +196,15 @@ class App extends Component {
 
           <Route path="/scoreboard" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
-              <Scoreboard />
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              <Scoreboard leaderboard = {this.state.leaderboard}/>
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
           )} />
 
           <Route path="/loan" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Loan />
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
@@ -194,7 +212,7 @@ class App extends Component {
 
           <Route path="/profile" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Profile />
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
