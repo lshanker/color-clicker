@@ -18,15 +18,20 @@ class Scoreboard extends Component {
          var rows = [];
 
          var c = 1;
+         var topUser = "";
 
          this.props.leaderboard.forEach(function(value, i){ 
             rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()}/>)
+            if(c===1){
+                topUser = value.child("username").val()
+            }
+
             c++
         })
 
         return(
             <div className = "scoreboardContainer">
-                <h1 className = "leader">Current Leader: (username)</h1>
+                <h1 className = "leader">Current Leader: {topUser}</h1>
                 <table>
                     
                     <tbody>
