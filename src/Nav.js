@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Nav.css';
 
 import Timer from './Timer'
+import base, {auth} from './base'
 
 class Nav extends Component{
     constructor(){
@@ -17,6 +18,8 @@ class Nav extends Component{
     }
 
     tick = () => {
+
+   
         this.setState({secondsRemaining: this.state.secondsRemaining - 1});
 
         this.setState({days: Math.floor(this.state.secondsRemaining/(60 * 60 * 24))})
@@ -29,7 +32,22 @@ class Nav extends Component{
         }
       }
 
-      componentDidMount = () => {
+      componentWillMount(){
+        base.fetch('deadline', {
+            context: this,
+          }).then(data => {
+              console.log('here 1')
+              console.log(data)
+            this.setState({deadline: data})
+            console.log(this.state.deadline-Date.now())
+            this.setState({secondsRemaining: Math.floor((this.state.deadline - Date.now())/1000)})
+          })
+      }
+
+    componentDidMount = () => {
+    
+        console.log(this.state.deadline)
+     
         this.interval = setInterval(this.tick, 1000);
       }
 
@@ -38,10 +56,9 @@ class Nav extends Component{
       }
 
     render(){
-        
         return(
             <div className = {`nav ${this.props.currentWinner}Border`}>
-                <div className = {`coverShadow ${this.props.currentWinner}`}>  <div className = "time"><p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p></div></div>
+                <div className = {`coverShadow ${this.props.currentWinner}`}>  <div className = "time">{(this.state.seconds === 0) ? null : <p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div></div>
                 <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className={`${this.props.currentWinner}Text`}>Color Clicker</p><img src={require('./images/mouse-hand.png')} /></div>
                 <div className = {`border ${this.props.currentWinner}Text`}></div>
                 <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>

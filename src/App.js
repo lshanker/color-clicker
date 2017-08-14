@@ -36,11 +36,16 @@ class App extends Component {
       leaderboard: {},
 
       currentWinner: "green",
+  
 
     }
   }
 
+
+
   componentDidMount(){
+
+   
 
     base.syncState(
       'colors',
@@ -57,7 +62,6 @@ class App extends Component {
       data.forEach(function(data) {
         colorScores.push(data.key)
       });
-      console.log(colorScores[colorScores.length-1])
       colorScores = colorScores.reverse();
       let currentWinner = colorScores[0]
       this.setState({colorScores})
@@ -80,6 +84,8 @@ class App extends Component {
   }
 
   componentWillMount(){
+   
+
      auth.onAuthStateChanged(
            (user) => {
                 if(user){
@@ -121,6 +127,7 @@ class App extends Component {
 
   syncUserPossessions = () => {
    
+ 
 
 
      base.fetch(`users/${this.state.uid}`, {
@@ -186,8 +193,8 @@ class App extends Component {
               ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
-              colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>
-              <Nav history={this.props.history} currentWinner={this.state.currentWinner} />
+              colors = {this.state.colors} incrementTeam = {this.incrementTeam}/> 
+               <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               </div>
               : <Redirect to="/sign-in"/>
           )} />
@@ -265,6 +272,7 @@ class App extends Component {
     leaderboardInfo.score-=points
     this.setState({leaderboardInfo})
   }
+
 
 }
 
