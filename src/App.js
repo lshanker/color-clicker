@@ -13,6 +13,7 @@ import Shop from './Shop'
 import Scoreboard from './Scoreboard'
 import Loan from './Loan'
 import Profile from './Profile'
+import Splash from './Splash'
 
 class App extends Component {
 
@@ -178,7 +179,11 @@ class App extends Component {
               : <Redirect to="/sign-in"/>
           )} />
 
-          <Route render={() => <Redirect to="/home" />} />
+          <Route path="/" render={() => (
+            <Splash history={this.props.history}/>
+          )} />
+
+          <Route render={() => <Redirect to="/" />} />
         </Switch>
      </div>
     );

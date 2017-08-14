@@ -1,0 +1,38 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css");
+
+* {
+    /*Reset's every elements apperance*/
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    border-spacing: 0;
+    color: #26589F;
+    font-family: 'PT Sans Narrow',sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42rem;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+  }
+
+div.title{
+    margin: auto;
+    width: 200px;
+}
+
+div.title p{
+    font-family: 'Bungee', cursive;
+    font-size: 100px;
+    width: 150px;
+    display: inline-block;
+    line-height: 100px;
+    color: black;
+}
+
+a {
+    display: flex;
+    justify-content: center;
+}
