@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import firebase from 'firebase/app'
+import 'firebase/database'
 import base, {auth} from './base'
 
 import { Route, Switch, Redirect } from 'react-router-dom'
@@ -25,15 +27,26 @@ class App extends Component {
     this.state = {
       colors: { green: 0 }, //see Firebase for complete object
 
+      colorScores: [],
+
       uid: null,
 
-      possessions: {points: 0, color: 'green', given: 0},
+      possessions: {username: "lshanker", points: 0, color: 'green', given: 0},
 
-      currentWinner: "green"
+      leaderboardInfo: {username: "lshanker", score: 0, color: "green"},
+      leaderboard: {},
+
+      currentWinner: "green",
+  
+
     }
   }
 
+
+
   componentDidMount(){
+
+   
 
     base.syncState(
       'colors',
@@ -43,16 +56,37 @@ class App extends Component {
       }
     )
 
-    //change to test current winner
-    this.setState({currentWinner: "blue"})
+    var colorRef = firebase.database().ref('colors/');
+    colorRef.orderByValue().on('value', (data) => {
+       
+      var colorScores = [];      
+      data.forEach(function(data) {
+        colorScores.push(data.key)
+      });
+      colorScores = colorScores.reverse();
+      let currentWinner = colorScores[0]
+      this.setState({colorScores})
+      this.setState({currentWinner})
+    })    
 
+
+    var scoreRef = firebase.database().ref('leaderboard/');
+    scoreRef.orderByChild("score").limitToFirst(100).on('value', (data) =>{
+      this.setState({leaderboard: data})
+    })
+
+   
     
 
-    //Copied from noteherder
+   
+
+
    
   }
 
   componentWillMount(){
+   
+
      auth.onAuthStateChanged(
            (user) => {
                 if(user){
@@ -81,13 +115,20 @@ class App extends Component {
   authHandler = (userData) => {
         this.setState(
                     {uid: userData.uid},
-                      this.syncUserPossessions
+                      this.syncUserPossessions,
+                      this.syncWinner
                      )
         
   }
 
+  syncWinner = () => {
+
+    
+  }
+
   syncUserPossessions = () => {
    
+ 
 
 
      base.fetch(`users/${this.state.uid}`, {
@@ -101,6 +142,12 @@ class App extends Component {
           data: this.state.possessions
          }
          );
+
+         base.update(`leaderboard/${this.state.uid}`, {
+           data: this.state.leaderboardInfo
+         });
+
+        
       }else{
         base.fetch(`users/${this.state.uid}`, {
           context: this,
@@ -119,6 +166,16 @@ class App extends Component {
       }
     )
 
+    this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
+
+    base.syncState(
+      `leaderboard/${this.state.uid}`,
+      {
+        context: this,
+        state: 'leaderboardInfo'
+      }
+    )
+
     }).catch(error => {
 
     })
@@ -134,11 +191,11 @@ class App extends Component {
         <Switch>
           <Route path="/home" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
-              colors = {this.state.colors} incrementTeam = {this.incrementTeam}/>
-              <Nav history={this.props.history} currentWinner={this.state.currentWinner} />
+              colors = {this.state.colors} incrementTeam = {this.incrementTeam}/> 
+               <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               </div>
               : <Redirect to="/sign-in"/>
           )} />
@@ -149,7 +206,7 @@ class App extends Component {
             )} />
         <Route path="/shop" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Shop />
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
@@ -157,15 +214,15 @@ class App extends Component {
 
           <Route path="/scoreboard" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
-              <Scoreboard />
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              <Scoreboard leaderboard = {this.state.leaderboard}/>
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
           )} />
 
           <Route path="/loan" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Loan />
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
@@ -173,7 +230,7 @@ class App extends Component {
 
           <Route path="/profile" render={() => (
             this.signedIn()
-              ?<div><Header signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <Profile />
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
               : <Redirect to="/sign-in"/>
@@ -215,7 +272,12 @@ class App extends Component {
     possessions.points = 0
     possessions.given+=points
     this.setState({colors, possessions})
+
+    let leaderboardInfo = this.state.leaderboardInfo
+    leaderboardInfo.score-=points
+    this.setState({leaderboardInfo})
   }
+
 
 }
 
