@@ -72,7 +72,7 @@ class Splash extends Component {
         return (
             <div>
                 <div className="page-wrap">
-                    <div className = {`content ${this.props.currentWinner}Text`} >
+                    <div className = {`content ${this.props.currentWinner}Text`} style = {{border: "5px solid " + this.props.currentWinner}} >
                         <p className="titlea">Color Clicker.</p>
                     </div>
                 </div>
