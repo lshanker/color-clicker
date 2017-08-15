@@ -73,6 +73,8 @@ div.content{
     top: 50%;
     transform: translateY(50%);
     border: solid 5px;
+
+    box-shadow: 5px 3px 8px #CBCBCB;
 }
 
 p.titlea{
