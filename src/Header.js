@@ -16,7 +16,7 @@ class Header extends Component{
              <div className = {`header ${this.props.currentWinner}`}> 
                  <p className = 'logOut' onClick = {this.props.signOut}>Log Out <i className="fa fa-sign-out"></i></p>
                  <div className = "squareContainer">
-                 {this.props.colorScores.map((cur, i) => <ScoreSquare key = {i} index = {i} color = {cur} points = {this.props.colors[cur]}/>)}
+                 {this.props.colorScores.map((cur, i) => <ScoreSquare key = {i} index = {i} color = {cur} points = {this.props.colors[cur]} showPoints = {true}/>)}
                  </div>
              </div>
                 

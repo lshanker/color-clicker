@@ -31,12 +31,12 @@ class Scoreboard extends Component {
 
         return(
             <div className = "scoreboardContainer">
-                <h1 className = "leader">Current Leader: {topUser}</h1>
+                <p className = "you">You</p>
+                <h1 className = "banner">Rank: #??? Contribution ???%</h1>
                 <table>
-                    
                     <tbody>
                     <tr>
-                        <th>Rank</th><th>Username</th><th>Score</th>
+                        <th></th><th>Username</th><th>Score</th><th>Team</th>
                     </tr>
                         {rows}
                     </tbody>

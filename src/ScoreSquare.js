@@ -28,7 +28,7 @@ class ScoreSquare extends Component {
         return(
             <div className = "scoreSquareContainer">
                 <div style = {divStyle} className = "coloredSquare"></div>
-                <p>{this.props.points}p</p>
+                {!this.props.showPoints ? null : <p>{this.props.points}p</p>}
             </div>
         )}
 }
