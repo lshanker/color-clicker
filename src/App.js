@@ -31,9 +31,9 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {username: "nurnes", points: 0, color: 'green', given: 0},
+      possessions: {username: "lshanker", points: 0, color: 'green', given: 0},
 
-      leaderboardInfo: {username: "nurnes", score: 0, color: "green"},
+      leaderboardInfo: {username: "lshanker", score: 0, color: "green"},
       leaderboard: {},
 
       currentWinner: "green",

@@ -3,6 +3,8 @@ import './Splash.css'
 import BottomBar from './BottomBar'
 import base, {auth} from './base'
 
+import ScoreSquare from './ScoreSquare'
+
 class Splash extends Component {
     constructor(){
         super()
@@ -58,21 +60,27 @@ class Splash extends Component {
         return (
             <div>
                 <div className="page-wrap">
-                    <div className={`content ${this.props.currentWinner}Text`} onClick={() => this.props.history.push('/home')}>
+                    <div className={`content ${this.props.currentWinner}Text`} >
                         <p className="titlea">Color Clicker.</p>
                     </div>
                 </div>
-                    <div className={`${this.props.currentWinner} a`}>
-                        <div className = "squareContainera">
-                        {this.props.colorScores.map((cur, i) => <BottomBar key = {i} index = {i} color = {cur} points = {this.props.colors[cur]}/>)}
-                        </div>
+                <div className = 'scoreboardContainer'>
+                    {this.props.colorScores.map((cur, i) => <ScoreSquare key = {i} index = {i} color = {cur} points = {this.props.colors[cur]} showPoints = {true} splash = {true}/>)}
+                </div>
+               
+                    <div className = "enterContainer">
+                        <button className = "enter" onClick={() => this.props.history.push('/home')}>Enter Game</button>
                     </div>
 
-                    <div className = "timea">{(this.state.seconds === 0) ? null : <p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div>
-
+                    <div className = "countdownContainer">
+                        <div>{(this.state.seconds === null) ? null : <p className = "countdown">{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div>
+                    </div>
             </div>
         )
     }
 }
-
+/*     <div className={`${this.props.currentWinner} a`}>
+                   
+                    </div>
+                    */
 export default Splash

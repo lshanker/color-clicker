@@ -1,4 +1,4 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css");
+
 
 * {
     /*Reset's every elements apperance*/
@@ -17,6 +17,56 @@
     text-decoration: none;
     text-indent: 0;
   }
+
+div.scoreboardContainer{
+    margin-top: 200px;
+    float: left;
+    margin-left: -95px;
+}
+
+div.enterContainer{
+    margin-top: 100px;
+
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+div.countdownContainer{
+    margin-top: 50px;
+
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+div.countdownContainer div{
+    display: inline-block;
+}
+
+p.countdown{
+    display: inline-block;
+    font-family: 'Bungee', cursive;
+    color: black;
+    font-size: 20px;
+
+}
+
+button.enter{
+    background-color: green;
+    color: white;
+    font-family: 'Bungee', cursive;
+    font-size: 40px;
+    padding: 20px;
+
+    border-radius: 10px;
+    transition: 0.2s
+}
+
+button.enter:hover{
+ box-shadow: 5px 3px 8px #CBCBCB;
+ transition: 0.2s
+}
 
 div.content{
     position: relative;
@@ -45,7 +95,7 @@ p.titlea{
  .page-wrap {
     text-align: left;
     width: 800px;
-    margin: 0 auto;
+   margin: 0 auto
  }
 
  .squareContainera {
