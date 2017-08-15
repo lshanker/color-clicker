@@ -50,6 +50,13 @@ class Splash extends Component {
                 console.log(this.state.deadline)
              
                 this.interval = setInterval(this.tick, 1000);
+
+                var elements = document.querySelectorAll(".teamColor")
+                console.log('here')
+                console.log(elements[0])
+                console.log(elements[1])
+               
+            
               }
         
               componentWillUnmount = () =>{
@@ -60,11 +67,15 @@ class Splash extends Component {
         return (
             <div>
                 <div className="page-wrap">
+                    <div className = "teamColor">
+                        </div>
+                        <p className = "teamColor">
+                        </p>
                     <div className={`content ${this.props.currentWinner}Text`} >
                         <p className="titlea">Color Clicker.</p>
                     </div>
                 </div>
-                <div className = 'scoreboardContainer'>
+                <div className = 'splashSquaresContainer'>
                     {this.props.colorScores.map((cur, i) => <ScoreSquare key = {i} index = {i} color = {cur} points = {this.props.colors[cur]} showPoints = {true} splash = {true}/>)}
                 </div>
                

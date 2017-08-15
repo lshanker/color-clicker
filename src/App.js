@@ -76,10 +76,6 @@ class App extends Component {
     })
 
    
-    
-
-   
-
 
    
   }
