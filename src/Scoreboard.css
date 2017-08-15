@@ -1,9 +1,10 @@
 div.scoreboardContainer{
     margin-top: 40px;
-    float: right;
+    float: right !important;
     width: calc(100% - 200px);
 
     text-align: center;
+    margin-top: 40px !important;
 }
 
 p.you{
