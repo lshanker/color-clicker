@@ -26,6 +26,7 @@ class TableRow extends Component{
             borTopElements[i].setAttribute("style", `border-top: solid 1px ${this.props.currentWinner}`)
         }
 
+
         return(
             <tr>
               <td className = "teamColorBorderR">#{this.props.rank}</td><td className = "teamColorBorderR">{this.props.username}</td><td className = "teamColorBorderR">{this.props.score}</td><td className = "teamColorBorderR"><ScoreSquare color = "green" showPoints = {null}/></td><td>??.??%</td>

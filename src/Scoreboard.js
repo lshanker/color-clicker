@@ -73,10 +73,10 @@ class Scoreboard extends Component {
         return(
             <div className = "scoreboardContainer">
                 <p className = "you teamColor">You</p>
-                <h1 className = "banner teamColor" style = {{backgroundColor: shadeColor2(colorToHex(this.props.currentWinner),  0.5)}}>Rank: #??? Contribution ???%</h1>
+                <h1 className = "banner" style = {{backgroundColor: shadeColor2(colorToHex(this.props.currentWinner),  0.8), color: this.props.currentWinner}}>Rank: #??? Contribution ???%</h1>
                 <table>
                     <tbody>
-                    <tr className = "teamColorBorderB" style = {{borderBottom: 'solid 1px' + this.props.currentWinner}}>
+                    <tr className = "teamColorBorderB" style = {{borderBottom: 'solid 1px ' + this.props.currentWinner}}>
                         <th></th><th className = "teamColor">Username</th><th className = "teamColor">Score</th><th className = "teamColor">Team</th><th className = "teamColor">Contribution</th>
                     </tr>
                         {rows}

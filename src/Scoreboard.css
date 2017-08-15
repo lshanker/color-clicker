@@ -39,11 +39,11 @@ table{
 
 
 tr:hover{
-    background-color: #B8D8B8;
+    background-color: #C7C7C7;
 }
 
 tr:nth-child(2n):hover{
-    background-color: #B8D8B8;
+    background-color: #C7C7C7;
 }
 
 tr:first-child:hover{
@@ -75,3 +75,4 @@ td{
 td:last-child{
     border-right: 0px;
 }
+
