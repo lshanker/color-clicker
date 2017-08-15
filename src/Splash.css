@@ -1,0 +1,83 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css");
+
+* {
+    /*Reset's every elements apperance*/
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    border-spacing: 0;
+    color: #26589F;
+    font-family: 'PT Sans Narrow',sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42rem;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0;
+  }
+
+div.content{
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+    border: solid 5px;
+}
+
+p.titlea{
+    font-family: 'Bungee', cursive;
+    font-size: 100px;
+    width: 150px;
+    display: inline-block;
+    line-height: 100px;
+    color: black;
+}
+
+.a {
+    bottom:0;
+    position:fixed;
+    height:35px;
+    margin: auto;
+    width: 100%;
+  }
+
+ .page-wrap {
+    text-align: left;
+    width: 800px;
+    margin: 0 auto;
+ }
+
+ .squareContainera {
+    width: 300px;
+    height: 36px;
+    margin: auto;
+
+    background-color: white;
+    border-top: 2px solid green;
+
+    border-radius: 20px;
+
+    padding-left: 10px;
+
+    display: flex;
+    align-items: center;
+ }
+
+ div.timea{
+    display: inline-block;
+    text-align: center;
+    overflow: visible;
+    bottom:0;
+    position:fixed;
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+div.timea p {
+    line-height: 1rem;
+    color: white;
+    padding-top: 18px;
+    padding-left: 500px;
+}
