@@ -31,9 +31,9 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {username: "lshanker", points: 0, color: 'green', given: 0},
+      possessions: {username: "nurnes", points: 0, color: 'green', given: 0},
 
-      leaderboardInfo: {username: "lshanker", score: 0, color: "green"},
+      leaderboardInfo: {username: "nurnes", score: 0, color: "green"},
       leaderboard: {},
 
       currentWinner: "green",
@@ -109,7 +109,7 @@ class App extends Component {
                 base.removeBinding(this.ref)
                 this.setState({ uid: null, possessions: {points: 0, color: 'green'}})
             })
-        
+            this.props.history.push('/')
     }
 
   authHandler = (userData) => {
@@ -237,7 +237,7 @@ class App extends Component {
           )} />
 
           <Route path="/" render={() => (
-            <Splash history={this.props.history}/>
+            <Splash colorScores = {this.state.colorScores} colors = {this.state.colors} history={this.props.history} currentWinner={this.state.currentWinner}/>
           )} />
 
           <Route render={() => <Redirect to="/" />} />
