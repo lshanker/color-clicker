@@ -43,6 +43,7 @@ class Splash extends Component {
                     console.log(this.state.deadline-Date.now())
                     this.setState({secondsRemaining: Math.floor((this.state.deadline - Date.now())/1000)})
                   })
+                  console.log(this.props.currentWinner)
               }
         
             componentDidMount = () => {
@@ -51,11 +52,9 @@ class Splash extends Component {
              
                 this.interval = setInterval(this.tick, 1000);
 
-                var elements = document.querySelectorAll(".teamColor")
-                console.log('here')
-                console.log(elements[0])
-                console.log(elements[1])
+                
                
+                    console.log(this.props.currentWinner)
             
               }
         
@@ -64,14 +63,16 @@ class Splash extends Component {
               }
 
     render(){
+        var elements = document.querySelectorAll(".teamColorBackground")
+        for(var i = 0; i<elements.length; i++){
+            console.log(this.props.currentWinner)
+            elements[i].setAttribute("style", `background-color: ${this.props.currentWinner}`)
+        }
+        
         return (
             <div>
                 <div className="page-wrap">
-                    <div className = "teamColor">
-                        </div>
-                        <p className = "teamColor">
-                        </p>
-                    <div className={`content ${this.props.currentWinner}Text`} >
+                    <div className = {`content ${this.props.currentWinner}Text`} >
                         <p className="titlea">Color Clicker.</p>
                     </div>
                 </div>
@@ -80,7 +81,7 @@ class Splash extends Component {
                 </div>
                
                     <div className = "enterContainer">
-                        <button className = "enter" onClick={() => this.props.history.push('/home')}>Enter Game</button>
+                        <button className = {['enter', 'teamColorBackground'].join(' ')} onClick={() => this.props.history.push('/home')}>Enter Game</button>
                     </div>
 
                     <div className = "countdownContainer">
@@ -93,5 +94,7 @@ class Splash extends Component {
 /*     <div className={`${this.props.currentWinner} a`}>
                    
                     </div>
+
+                    
                     */
 export default Splash
