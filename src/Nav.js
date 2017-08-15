@@ -45,8 +45,7 @@ class Nav extends Component{
       }
 
     componentDidMount = () => {
-    
-        console.log(this.state.deadline)
+
      
         this.interval = setInterval(this.tick, 1000);
       }
@@ -56,11 +55,36 @@ class Nav extends Component{
       }
 
     render(){
+        var elements = document.querySelectorAll(".teamColor")
+        for(var i = 0; i<elements.length; i++){
+            elements[i].setAttribute("style", `color: ${this.props.currentWinner}`)
+        }
+        
+
+        var bkgElements = document.querySelectorAll(".teamColorBackground")
+        for(var i = 0; i<bkgElements.length; i++){
+            bkgElements[i].setAttribute("style", `background-color: ${this.props.currentWinner}`)
+        }
+
+        var borRightElements = document.querySelectorAll(".teamColorBorderR")
+        for(var i = 0; i<borRightElements.length; i++){
+            borRightElements[i].setAttribute("style", `border-right: solid 1px ${this.props.currentWinner}`)
+        }
+
+        var borTopElements = document.querySelectorAll(".teamColorBorderT")
+        for(var i = 0; i<borTopElements.length; i++){
+            borTopElements[i].setAttribute("style", `border-top: solid 1px ${this.props.currentWinner}`)
+        }
+        
+        
+        
+        
+
         return(
-            <div className = {`nav ${this.props.currentWinner}Border`}>
-                <div className = {`coverShadow ${this.props.currentWinner}`}>  <div className = "time">{(this.state.seconds === null) ? null : <p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div></div>
-                <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className={`${this.props.currentWinner}Text`}>Color Clicker.</p></div>
-                <div className = {`border ${this.props.currentWinner}Text`}></div>
+            <div className = "nav teamColorBorderR">
+                <div className = "coverShadow teamColorBackground">  <div className = "time">{(this.state.seconds === null) ? null : <p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div></div>
+                <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className = "teamColor">Color Clicker.</p></div>
+                <div className = "border teamColorBorderT"></div>
                 <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>
                 <div className = 'menuOption' onClick={() => this.props.history.push('/shop')} ><p  className = 'menuOptionText'><i className="fa fa-money"></i>Shop</p></div>
                 <div className = 'menuOption' onClick={() => this.props.history.push('/scoreboard')}><p className = 'menuOptionText'><i className="fa fa-bar-chart" aria-hidden="true"></i>Scoreboard</p></div>

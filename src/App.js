@@ -211,7 +211,7 @@ class App extends Component {
           <Route path="/scoreboard" render={() => (
             this.signedIn()
               ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
-              <Scoreboard leaderboard = {this.state.leaderboard}/>
+              <Scoreboard leaderboard = {this.state.leaderboard} currentWinner = {this.state.currentWinner}/>
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} />
               </div>
               : <Redirect to="/sign-in"/>
