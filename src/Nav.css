@@ -1,3 +1,4 @@
+
 div.nav{
     background-color: #FFFFFF;
     
@@ -8,12 +9,11 @@ div.nav{
 
     float: left;
     width: 199px;
-    height: 100vh;
+    height: 85vh;
 
     overflow: hidden;
 
     box-shadow: 5px 0px 20px #E3E3E3;
-
     
 }
 

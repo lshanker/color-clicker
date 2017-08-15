@@ -36,7 +36,7 @@ class App extends Component {
       leaderboardInfo: {username: "lshanker", score: 0, color: "green"},
       leaderboard: {},
 
-      currentWinner: "green",
+      currentWinner: "gray",
   
 
     }
