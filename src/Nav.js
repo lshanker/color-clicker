@@ -59,7 +59,7 @@ class Nav extends Component{
         return(
             <div className = {`nav ${this.props.currentWinner}Border`}>
                 <div className = {`coverShadow ${this.props.currentWinner}`}>  <div className = "time">{(this.state.seconds === null) ? null : <p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div></div>
-                <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className={`${this.props.currentWinner}Text`}>Color Clicker</p><img src={require('./images/mouse-hand.png')} /></div>
+                <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className={`${this.props.currentWinner}Text`}>Color Clicker.</p></div>
                 <div className = {`border ${this.props.currentWinner}Text`}></div>
                 <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>
                 <div className = 'menuOption' onClick={() => this.props.history.push('/shop')} ><p  className = 'menuOptionText'><i className="fa fa-money"></i>Shop</p></div>

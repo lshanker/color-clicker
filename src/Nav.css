@@ -86,6 +86,7 @@ img {
 
 div.border{
     border-top: 2px solid;
+    margin-top: -20px;
 }
 
 div.time{
