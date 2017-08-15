@@ -36,7 +36,7 @@ class Scoreboard extends Component {
                 <table>
                     <tbody>
                     <tr>
-                        <th></th><th>Username</th><th>Score</th><th>Team</th>
+                        <th></th><th>Username</th><th>Score</th><th>Team</th><th>Contribution</th>
                     </tr>
                         {rows}
                     </tbody>
