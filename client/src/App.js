@@ -39,7 +39,7 @@ class App extends Component {
       currentWinner: "gray",
   
       items: {
-          add100: {owned: 2, cooldown: 20000, startTime:1502896831874}
+          add10: {owned: 1, cooldown: 60000, startTime: null}
       }
 
     }
@@ -58,6 +58,8 @@ class App extends Component {
         state: 'colors'
       }
     )
+
+    
 
     var colorRef = firebase.database().ref('colors/');
     colorRef.orderByValue().on('value', (data) => {
@@ -79,6 +81,8 @@ class App extends Component {
     })
 
     
+    
+
     var interval = setInterval(this.checkItems, 1000)
    
 
@@ -96,6 +100,9 @@ class App extends Component {
                 }
            }
        )
+
+
+      
   }
 
     signedIn = () => {
@@ -148,6 +155,12 @@ class App extends Component {
            data: this.state.leaderboardInfo
          });
 
+
+         var ref = firebase.database().ref(`users/${this.state.uid}/items`);
+         ref.set(this.state.items)
+
+        
+  
         
       }else{
         base.fetch(`users/${this.state.uid}`, {
@@ -158,6 +171,13 @@ class App extends Component {
           }
         });
       }
+
+      base.syncState(
+        `users/${this.state.uid}/items`,
+        {
+          context: this,
+          state: 'items'
+        })
 
       this.ref = base.syncState(
       `users/${this.state.uid}`,
