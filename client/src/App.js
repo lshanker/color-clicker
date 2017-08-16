@@ -38,6 +38,9 @@ class App extends Component {
 
       currentWinner: "gray",
   
+      items: {
+          add100: {owned: 2, cooldown: 20000, startTime:1502896831874}
+      }
 
     }
   }
@@ -75,6 +78,8 @@ class App extends Component {
       this.setState({leaderboard: data})
     })
 
+    
+    var interval = setInterval(this.checkItems, 1000)
    
 
    
@@ -273,6 +278,28 @@ class App extends Component {
     let leaderboardInfo = this.state.leaderboardInfo
     leaderboardInfo.score-=points
     this.setState({leaderboardInfo})
+  }
+
+  checkItems = () =>{
+    let items = this.state.items;
+    Object.keys(items).forEach((item) => {
+
+      console.log(items[item].startTime + items[item].cooldown -Date.now())
+
+      if(items[item].startTime + items[item].cooldown <= Date.now()){
+        var possessions = this.state.possessions;
+        if(item.indexOf('add') !== -1){
+          var toBeAdded = item.substring(3);
+          var num = parseInt(toBeAdded)
+
+          possessions.points+=(num * items[item].owned)
+          this.setState({possessions})
+          
+          items[item].startTime = Date.now()
+          this.setState({items})
+        }
+      }
+    })
   }
 
 
