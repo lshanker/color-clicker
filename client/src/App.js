@@ -33,14 +33,19 @@ class App extends Component {
 
       possessions: {username: "lshanker", points: 0, color: 'green', given: 0},
 
-      leaderboardInfo: {username: "lshanker", score: 0, color: "green", contribution: 0.00},
+      leaderboardInfo: {username: "lshanker", score: 0, color: "green", contribution: 0.00,},
       leaderboard: {},
 
       currentWinner: "gray",
   
       items: {
-          add10: {owned: 1, cooldown: 60000, startTime: null}
-      }
+          add1: {owned: 1, cooldown: 20000, startTime: 0},
+          add100: {owned: 1, cooldown: 40000, startTime: 0},
+          add3000: {owned: 1, cooldown: 60000, startTime: 0}
+      },
+
+      newPoints: 0
+
 
     }
   }
@@ -82,10 +87,10 @@ class App extends Component {
 
     
     
+  
 
-    var interval = setInterval(this.checkItems, 1000)
    
-
+   
    
   }
 
@@ -99,11 +104,12 @@ class App extends Component {
                     this.authHandler(user);
                 }
            }
-       )
-
-
-      
+       )    
   }
+
+
+
+
 
     signedIn = () => {
         return this.state.uid;
@@ -201,7 +207,6 @@ class App extends Component {
 
     })
 
-  
   }
 
 
@@ -215,7 +220,7 @@ class App extends Component {
               ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
-              colors = {this.state.colors} incrementTeam = {this.incrementTeam}/> 
+              colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               </div>
               : <Redirect to="/sign-in"/>
@@ -302,9 +307,8 @@ class App extends Component {
 
   checkItems = () =>{
     let items = this.state.items;
+    var newPoints = 0;
     Object.keys(items).forEach((item) => {
-
-      console.log(items[item].startTime + items[item].cooldown -Date.now())
 
       if(items[item].startTime + items[item].cooldown <= Date.now()){
         var possessions = this.state.possessions;
@@ -312,7 +316,14 @@ class App extends Component {
           var toBeAdded = item.substring(3);
           var num = parseInt(toBeAdded)
 
-          possessions.points+=(num * items[item].owned)
+          var intervals = Math.floor((Date.now()-items[item].startTime)/items[item].cooldown) //Needed for when the user leaves the website and comes back later
+
+          if(intervals > 1){
+            newPoints += num * items[item].owned * intervals;
+          }
+        
+
+          possessions.points+=(num * items[item].owned * intervals)
           this.setState({possessions})
           
           items[item].startTime = Date.now()
@@ -320,7 +331,13 @@ class App extends Component {
         }
       }
     })
+  
+    if(newPoints>0){
+      this.setState({newPoints})
+    }
   }
+
+
 
 
 }
