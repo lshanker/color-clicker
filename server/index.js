@@ -20,7 +20,7 @@ var interval = setInterval(() => {
      console.log(snapshot.val());
      if(Date.now()>=snapshot.val()){
          console.log('time is up!')
-         ref.set(Date.now() + 3600000)
+         ref.set(Date.now() + 5000)
      }
     });
 }, 1000)

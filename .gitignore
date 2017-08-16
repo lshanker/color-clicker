@@ -1,5 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+/server/color-clicker-b234a-firebase-adminsdk-ka48o-41f5d06651.json
+
 # dependencies
 /node_modules
 

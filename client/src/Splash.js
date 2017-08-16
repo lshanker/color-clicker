@@ -18,44 +18,37 @@ class Splash extends Component {
         }
     }
 
+   
     tick = () => {
+        var secondsRemaining = Math.floor((this.state.deadline - Date.now())/1000)
+
+        if (secondsRemaining <= 0) {
+            secondsRemaining = 0;
+          //clearInterval(this.interval);
+        }
         
-           
-                this.setState({secondsRemaining: this.state.secondsRemaining - 1});
-        
-                this.setState({days: Math.floor(this.state.secondsRemaining/(60 * 60 * 24))})
-                this.setState({hours: Math.floor((this.state.secondsRemaining - this.state.days*60*60*24)/(60 * 60))})
-                this.setState({minutes: Math.floor((this.state.secondsRemaining - this.state.days*60*60*24 - this.state.hours*60*60)/(60))})
-                this.setState({seconds: Math.floor((this.state.secondsRemaining - this.state.days*60*60*24 - this.state.hours*60*60 - this.state.minutes*60))})
-        
-                if (this.state.secondsRemaining <= 0) {
-                  clearInterval(this.interval);
-                }
-              }
-        
+        this.setState({days: Math.floor(secondsRemaining/(60 * 60 * 24))})
+        this.setState({hours: Math.floor((secondsRemaining - this.state.days*60*60*24)/(60 * 60))})
+        this.setState({minutes: Math.floor((secondsRemaining - this.state.days*60*60*24 - this.state.hours*60*60)/(60))})
+        this.setState({seconds: Math.floor((secondsRemaining - this.state.days*60*60*24 - this.state.hours*60*60 - this.state.minutes*60))})
+
+       
+      }
               componentWillMount(){
                 base.fetch('deadline', {
                     context: this,
                   }).then(data => {
-                      console.log('here 1')
-                      console.log(data)
                     this.setState({deadline: data})
-                    console.log(this.state.deadline-Date.now())
-                    this.setState({secondsRemaining: Math.floor((this.state.deadline - Date.now())/1000)})
                   })
-                  console.log(this.props.currentWinner)
+        
+                base.syncState('deadline', {
+                    context: this,
+                    state: 'deadline'
+                })
               }
         
             componentDidMount = () => {
-            
-                console.log(this.state.deadline)
-             
                 this.interval = setInterval(this.tick, 1000);
-
-                
-               
-                    console.log(this.props.currentWinner)
-            
               }
         
               componentWillUnmount = () =>{
