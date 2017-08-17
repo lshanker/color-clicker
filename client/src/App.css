@@ -113,4 +113,5 @@ html {
 
 html{
   min-width: 1300px;
+  overflow: hidden;
 }

@@ -9,7 +9,7 @@ class Adder extends Component{
                 <div className = "adder" style = {{backgroundColor: this.props.teamColor}}>
                     {this.props.value}                     
                 </div>
-                <p>x {this.props.owned} <p>= {this.props.value * this.props.owned}p/min</p></p>
+                <p>x {this.props.owned} <p>= {this.props.value * this.props.owned}p/{this.props.time}</p></p>
             </div>
         )
     }else{
@@ -18,7 +18,7 @@ class Adder extends Component{
             <div className = "adder" style = {{backgroundColor: this.props.teamColor}}>
                 X {this.props.value}                     
             </div>
-            <p>x {this.props.owned} <p>= x{this.props.value * this.props.owned}/min</p></p>
+            <p>x {this.props.owned} <p>= x{this.props.value * this.props.owned}/{this.props.time}</p></p>
         </div>
         )
     }

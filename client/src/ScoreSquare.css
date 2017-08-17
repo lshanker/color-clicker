@@ -15,9 +15,24 @@ div.coloredSquare {
     margin-right: 8px;
 
     box-shadow: 5px 3px 8px #CBCBCB;
+
+    text-align: center;
 }
 
 div.squareContainer p {
     color: black;
     display: inline-block;
+}
+
+i.colorArrow{
+    color: black;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 30px;
+    visibility: hidden;
+}
+
+i.colorArrow:hover{
+    color: white;
+    visibility: visible;
 }

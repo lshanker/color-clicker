@@ -16,6 +16,7 @@ import Scoreboard from './Scoreboard'
 import Loan from './Loan'
 import Profile from './Profile'
 import Splash from './Splash'
+import FirstTimeSetup from './FirstTimeSetup'
 
 class App extends Component {
 
@@ -31,9 +32,9 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {username: "lshanker", points: 0, color: 'green', given: 0},
+      possessions: {username: "", points: 0, color: 'gray', given: 0},
 
-      leaderboardInfo: {username: "lshanker", score: 0, color: "green", contribution: 0.00,},
+      leaderboardInfo: {username: "", score: 0, color: "gray", contribution: 0.00,},
       leaderboard: {},
 
       currentWinner: "gray",
@@ -160,11 +161,6 @@ class App extends Component {
          }
          );
 
-         base.update(`leaderboard/${this.state.uid}`, {
-           data: this.state.leaderboardInfo
-         });
-
-
          var ref = firebase.database().ref(`users/${this.state.uid}/items`);
          ref.set(this.state.items)
 
@@ -196,6 +192,7 @@ class App extends Component {
       }
     )
 
+    if(this.state.possessions.color !== 'gray'){
     this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
 
     base.syncState(
@@ -205,6 +202,8 @@ class App extends Component {
         state: 'leaderboardInfo'
       }
     )
+
+    }
 
     }).catch(error => {
 
@@ -225,6 +224,7 @@ class App extends Component {
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
               colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
+              {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : console.log('Skip setup')}
               </div>
               : <Redirect to="/sign-in"/>
           )} />
@@ -355,6 +355,31 @@ class App extends Component {
         this.setState({possessions})
         this.setState({items})
       }
+    }
+
+    setup = (username, color) => {
+
+      let possessions = this.state.possessions;
+      possessions.username = username;
+      possessions.color = color;
+
+      this.setState({possessions})
+
+
+      //Do leaderboard stuff
+      base.update(`leaderboard/${this.state.uid}`, {
+        data: this.state.leaderboardInfo
+      });
+
+      this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
+      
+       base.syncState(
+            `leaderboard/${this.state.uid}`,
+            {
+              context: this,
+              state: 'leaderboardInfo'
+            }
+          )
     }
 
 

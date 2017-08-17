@@ -29,11 +29,12 @@ class ButtonPage extends Component{
         var multiplierRows = [];
         var c = 0;
 
+        var times = ['min', 'hr', 'day', '12hr', 'day', '36hr']
         Object.keys(this.props.items).forEach((cur) => {
             if(cur.substring(0, 3) === 'add'){
-              adderRows.push(<Adder key = {c} type = "add" owned = {this.props.items[cur].owned} value = {parseInt(cur.substring(3))} teamColor = {this.props.possessions.color}/>)
+              adderRows.push(<Adder key = {c} time = {times[c]} type = "add" owned = {this.props.items[cur].owned} value = {parseInt(cur.substring(3))} teamColor = {this.props.possessions.color}/>)
             }else{
-              multiplierRows.push(<Adder key = {c} type = "mul" owned = {this.props.items[cur].owned} value = {`1.${parseInt(cur.substring(3))}`} teamColor = {this.props.possessions.color}/>)
+              multiplierRows.push(<Adder key = {c} time = {times[c]} type = "mul" owned = {this.props.items[cur].owned} value = {`1.${parseInt(cur.substring(3))}`} teamColor = {this.props.possessions.color}/>)
             }
 
             c++;
@@ -65,9 +66,9 @@ class ButtonPage extends Component{
                
                 <div>
                     <div className = "pointContainer">
-                        <p className = "pointCount">Points: {this.props.possessions.points}</p>
-                        <button className = "giveButton"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.color}`}} onClick = {() => {this.props.incrementTeam(this.props.possessions.color, this.props.possessions.points)}}>Give points to team <i className="fa fa-hand-o-right" aria-hidden="true"></i></button>
-                        <p className = "score"  style = {{color: this.props.possessions.color}}>Your Score: {this.props.possessions.given}</p>
+                        <p className = "pointCount" style = {{backgroundColor: this.props.possessions.color}}>Points: {this.props.possessions.points}</p>
+                        <button className = "giveButton"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.possessions.color}`}} onClick = {() => {this.props.incrementTeam(this.props.possessions.color, this.props.possessions.points)}}>Give points to team <i className="fa fa-hand-o-right" aria-hidden="true"></i></button>
+                        <p className = "score"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.possessions.color}`, boxShadow: `0px 0px 5px ${this.props.possessions.color} inset`}}>Your Score: {this.props.possessions.given}</p>
                         <p className = "test">While you were away you earned {this.props.newPoints} points!</p>
                     </div>
                 </div>

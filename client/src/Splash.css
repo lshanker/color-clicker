@@ -52,6 +52,11 @@ p.countdown{
 
 }
 
+@keyframes fadeIn{
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
 button.enter{
     color: white;
     font-family: 'Bungee', cursive;
@@ -59,7 +64,12 @@ button.enter{
     padding: 20px;
 
     border-radius: 10px;
-    transition: 0.2s
+    transition: 0.2s;
+    
+
+    animation: fadeIn;
+    animation-duration: 1.5s;
+
 }
 
 button.enter:hover{
