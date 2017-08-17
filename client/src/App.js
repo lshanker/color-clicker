@@ -39,9 +39,12 @@ class App extends Component {
       currentWinner: "gray",
   
       items: {
-          add1: {owned: 1, cooldown: 20000, startTime: 0},
-          add100: {owned: 1, cooldown: 40000, startTime: 0},
-          add3000: {owned: 1, cooldown: 60000, startTime: 0}
+          add1: {owned: 0, cooldown: 20000, startTime: 0},
+          add100: {owned: 0, cooldown: 40000, startTime: 0},
+          add3000: {owned: 0, cooldown: 60000, startTime: 0},
+          mul1: {owned: 0, cooldown: 20000, startTime: 0},
+          mul2: {owned: 0, cooldown: 20000, startTime: 0},
+          mul3: {owned: 0, cooldown: 20000, startTime: 0},
       },
 
       newPoints: 0

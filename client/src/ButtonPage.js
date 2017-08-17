@@ -25,10 +25,23 @@ class ButtonPage extends Component{
 
     render(){
     
-        var rows = [];
+        var adderRows = [];
+        var multiplierRows = [];
         var c = 0;
+
         Object.keys(this.props.items).forEach((cur) => {
-            rows.push(<Adder key = {c} owned = {this.props.items[cur].owned} value = {parseInt(cur.substring(3))} teamColor = {this.props.possessions.color}/>)
+            if(cur.substring(0, 3) === 'add'){
+              adderRows.push(<Adder key = {c} type = "add" owned = {this.props.items[cur].owned} value = {parseInt(cur.substring(3))} teamColor = {this.props.possessions.color}/>)
+            }else{
+              multiplierRows.push(<Adder key = {c} type = "mul" owned = {this.props.items[cur].owned} value = {`1.${parseInt(cur.substring(3))}`} teamColor = {this.props.possessions.color}/>)
+            }
+
+            c++;
+        })
+
+        c = 0;
+        Object.keys(this.props.items).forEach((cur) => {
+            
             c++;
         })
 
@@ -37,13 +50,17 @@ class ButtonPage extends Component{
                 <div className = "adderContainer">
                     <div className = "rowAndTitleContainer">
                     <p className = "itemTitle" style = {{color: this.props.possessions.color}}>Adders</p>
-                    {rows}
+                    {adderRows}
                     </div>
                 </div>
                 <div className = 'buttonContainer'>
                     <button className = "bigButton" onClick = {this.props.incrementPoints}  style = {{backgroundColor: this.props.possessions.color}}><i className="fa fa-hand-pointer-o" aria-hidden="true"></i></button>
                 </div>
-                <div className = "interestContainer">
+                <div className = "adderContainer">
+                    <div className = "rowAndTitleContainer">
+                    <p className = "itemTitle" style = {{color: this.props.possessions.color}}>Multipliers</p>
+                    {multiplierRows}
+                    </div>
                 </div>
                
                 <div>
