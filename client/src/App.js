@@ -17,6 +17,7 @@ import Loan from './Loan'
 import Profile from './Profile'
 import Splash from './Splash'
 import FirstTimeSetup from './FirstTimeSetup'
+import Popup from './Popup'
 
 class App extends Component {
 
@@ -225,6 +226,7 @@ class App extends Component {
               colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : console.log('Skip setup')}
+              <Popup title = "Points Earned" message = "While you were away you earned some points!"/>
               </div>
               : <Redirect to="/sign-in"/>
           )} />

@@ -113,5 +113,6 @@ html {
 
 html{
   min-width: 1300px;
-  overflow: hidden;
+  min-height: 1130px;
+  overflow-y: hidden;
 }
