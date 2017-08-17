@@ -1,3 +1,61 @@
-.SignIn {
-    background-color: red;
+div.SignIn{
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 450px;
+
+    margin-left: -250px; /*Half of width*/
+    margin-top: -225px; /*Half of height*/
+
+    position: absolute;
+}
+
+div.SignIn h1{
+    color: black;
+    font-size: 50px;
+
+
+    font-family: 'Bungee', cursive;
+    display: inline-block;
+
+}
+
+div.signInTitle{
+    display: inline-block;
+    width: 100%;
+
+    text-align: center;
+}
+
+div.signInContainer{
+     display: inline-block;
+     width: 100%;
+     
+     text-align: center;
+    
+    margin-top: 20px;
+ 
+}
+
+div.signInContainer button{
+    color: black;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+
+    border: 1px solid black;
+    border-radius: 3px;
+
+    transition: 1s;
+
+    width: 250px;
+
+    text-align: center;
+}
+
+div.signInContainer button:hover{
+    border: 1px solid blue;
+    transition: 0.2s;
 }

@@ -60,7 +60,7 @@ p.logOut:hover{
 }
 
 div.squareContainer{
-    width: 400px;
+    width: 700px;
     height: 36px;
     margin-left: 450px;
 
@@ -73,6 +73,8 @@ div.squareContainer{
 
     display: flex;
     align-items: center;
+
+
 }
 
 

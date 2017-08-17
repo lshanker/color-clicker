@@ -231,7 +231,7 @@ class App extends Component {
           )} />
           <Route path="/sign-in" render={() => (
             !this.signedIn()
-              ?<SignIn />
+              ?<SignIn color = {this.state.currentWinner}/>
               :<Redirect to="/home" />
             )} />
         <Route path="/shop" render={() => (
@@ -341,7 +341,7 @@ class App extends Component {
       this.setState({newPoints})
       this.forceUpdate();
     }
-    
+
     }
 
     resetNewpoints = () => {
