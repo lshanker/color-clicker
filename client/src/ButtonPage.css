@@ -80,9 +80,13 @@ button.bigButton p{
 }
 
 div.pointContainer{
-    width: 220px;
-    float: right;
+    width: 100%;
     overflow: hidden;
+}
+
+div.widthContainer{
+    width: 100%;
+    display: inline-block;
 }
 
 p.pointCount{
@@ -98,7 +102,9 @@ p.pointCount{
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     
-    width: 210px;
+    width: auto;
+
+    float: right;
 }
 
 
@@ -118,6 +124,7 @@ button.giveButton{
 
     border: 1px solid green;
     color: green;
+
 }
 
 p.score{
@@ -127,7 +134,7 @@ p.score{
     font-family: 'Pacifico', cursive;
     line-height: 26px;
 
-    margin-top: 15px;
+    margin-top: 5px;
     padding-left: 10px;
     padding-right: 5px;
     padding-top: 1px;

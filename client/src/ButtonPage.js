@@ -67,9 +67,12 @@ class ButtonPage extends Component{
                 <div>
                     <div className = "pointContainer">
                         <p className = "pointCount" style = {{backgroundColor: this.props.possessions.color}}>Points: {this.props.possessions.points}</p>
-                        <button className = "giveButton"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.possessions.color}`}} onClick = {() => {this.props.incrementTeam(this.props.possessions.color, this.props.possessions.points)}}>Give points to team <i className="fa fa-hand-o-right" aria-hidden="true"></i></button>
-                        <p className = "score"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.possessions.color}`, boxShadow: `0px 0px 5px ${this.props.possessions.color} inset`}}>Your Score: {this.props.possessions.given}</p>
-                        <p className = "test">While you were away you earned {this.props.newPoints} points!</p>
+                        <div className = "widthContainer">
+                            <button className = "giveButton"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.possessions.color}`}} onClick = {() => {this.props.incrementTeam(this.props.possessions.color, this.props.possessions.points)}}>Give points to team <i className="fa fa-hand-o-right" aria-hidden="true"></i></button>
+                        </div>
+                        <div className = "widthContainer">
+                            <p className = "score"  style = {{color: this.props.possessions.color, border: `1px solid ${this.props.possessions.color}`, boxShadow: `0px 0px 5px ${this.props.possessions.color} inset`}}>Your Score: {this.props.possessions.given}</p>
+                        </div>
                     </div>
                 </div>
                 
