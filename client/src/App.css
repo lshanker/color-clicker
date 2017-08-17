@@ -110,3 +110,7 @@ html {
 .yellowBorder {
   border-right: 1px solid gold;
 }
+
+html{
+  min-width: 1300px;
+}

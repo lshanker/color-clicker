@@ -220,7 +220,7 @@ class App extends Component {
               ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
               <ButtonPage 
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
-              colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems}/> 
+              colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               </div>
               : <Redirect to="/sign-in"/>
@@ -231,11 +231,12 @@ class App extends Component {
               :<Redirect to="/home" />
             )} />
         <Route path="/shop" render={() => (
-            this.signedIn()
-              ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
-              <Shop />
-              <Nav history={this.props.history} currentWinner={this.state.currentWinner} /></div>
-              : <Redirect to="/sign-in"/>
+          this.signedIn()
+          ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
+            <Shop purchaseItem = {this.purchaseItem} teamColor = {this.state.possessions.color} items = {this.state.items}/>
+           <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
+          </div>
+          : <Redirect to="/sign-in"/>
           )} />
 
           <Route path="/scoreboard" render={() => (
@@ -335,7 +336,23 @@ class App extends Component {
     if(newPoints>0){
       this.setState({newPoints})
     }
-  }
+    }
+
+    purchaseItem = (price, value, type) => {
+      if(this.state.possessions.points < price){
+        alert("You need more points to buy that!");
+      }else{
+        let possessions = this.state.possessions
+        possessions.points-=price
+
+        let items = this.state.items
+        items[type + value].owned++
+        items[type + value].startTime = Date.now()
+
+        this.setState({possessions})
+        this.setState({items})
+      }
+    }
 
 
 

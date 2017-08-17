@@ -9,6 +9,7 @@ div.nav{
 
     float: left;
     width: 199px;
+    min-width: 199px;
     height: 100vh;
 
     overflow: hidden;
@@ -93,6 +94,8 @@ div.time{
     display: inline-block;
     text-align: center;
     overflow: visible;
+
+    min-width: 120px;
 }
 
 div.time p {

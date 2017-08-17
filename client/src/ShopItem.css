@@ -1,0 +1,71 @@
+div.shopItem{
+    width: 30%;
+    height: 220px;
+    text-align: center;
+
+    box-shadow: 2px 2px 8px #BFBFBF; 
+    transition: 0.2s;
+
+    display: inline-block;
+    margin-right: 3.33333%
+}
+
+div.shopItem:hover{
+    box-shadow: 2px 2px 8px #9D9D9D; 
+    transition: 0.2s;
+}
+
+div.shopItem .adder{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    display: inline-block;
+    vertical-align: middle;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-family: 'Bungee', cursive;
+    color: white;
+    text-align: center;
+    line-height: 60px;
+
+    box-shadow: 0 0 0 gray; 
+}
+
+div.shopItem p{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+p.description{
+    color: black;
+}
+
+p.price{
+    color: black;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button.buy{
+    font-family: 'Pacifico', cursive;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 6px;
+
+    width: 20%;
+    border-radius: 5px;
+    text-align: center;
+
+    font-size: 15px;
+    
+    transition: 0.2s;
+}
+
+button.buy:hover{
+    transition: 0.2s;
+    font-weight: bold;
+}

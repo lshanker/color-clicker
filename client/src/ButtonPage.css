@@ -1,15 +1,53 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+  }
+
 div.buttonPage{
     margin-top: 40px;
     float: right;
     width: calc(100% - 200px);
+
+    min-width: 785px;
 }
 
 div.buttonContainer{
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;    
 
+    height: 550px;
+    width: 40%;
+
+    vertical-align: top
+}
+
+div.adderContainer{
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center; 
+
+    width: 30%;
+    height: 550px;
+    
+
+    vertical-align: top;
+
+}
+
+
+div.rowAndTitleContainer{
+    text-align: left;
+}
+
+div.interestContainer{
+    display: inline-block;
+    vertical-align: top;
+
+    background-color: red;
+    width: 30%;
     height: 550px;
 }
 
@@ -19,6 +57,15 @@ button.bigButton{
     height: 300px;
     background-color: green;
     border-radius: 300px;
+
+    vertical-align: middle;
+    text-align: center;
+    box-shadow: 5px 3px 8px #CBCBCB;   
+}
+
+button.bigButton i{
+    color: white;
+    font-size: 200px;
 }
 
 button:hover{

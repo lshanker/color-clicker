@@ -3,7 +3,8 @@
 /server/color-clicker-b234a-firebase-adminsdk-ka48o-41f5d06651.json
 
 # dependencies
-/node_modules
+client/node_modules
+server/node_modules
 
 # testing
 /coverage
