@@ -51,7 +51,6 @@ class App extends Component {
 
       newPoints: 0
 
-
     }
   }
 
@@ -226,7 +225,7 @@ class App extends Component {
               colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : console.log('Skip setup')}
-              <Popup title = "Points Earned" message = "While you were away you earned some points!"/>
+              {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}
               </div>
               : <Redirect to="/sign-in"/>
           )} />
@@ -340,7 +339,13 @@ class App extends Component {
   
     if(newPoints>0){
       this.setState({newPoints})
+      this.forceUpdate();
     }
+    
+    }
+
+    resetNewpoints = () => {
+      this.setState({newPoints: 0})
     }
 
     purchaseItem = (price, value, type) => {

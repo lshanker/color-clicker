@@ -10,7 +10,7 @@ class Popup extends Component {
             <div className = 'popupBox2'>
                 <h1>{this.props.title}</h1>
                 <p className = "message">{this.props.message}</p>
-                <button className = "confirm">Nice!</button>
+                <button className = "confirm" onClick = {this.props.clickHandler}>Nice!</button>
             </div>
         </div>
         )

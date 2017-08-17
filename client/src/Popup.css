@@ -53,7 +53,8 @@ div.popupBox2 p{
     margin-top: 40px;
     font-size: 20px;
     color: black;
-    margin-right: 30px;
+    
+    width: 100%;
 }
 
 button.confirm{
