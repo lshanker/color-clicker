@@ -7,7 +7,8 @@ div.shopItem{
     transition: 0.2s;
 
     display: inline-block;
-    margin-right: 3.33333%
+    margin-right: 3.33333%;
+    margin-top: 20px;
 }
 
 div.shopItem:hover{
@@ -55,6 +56,7 @@ button.buy{
     color: white;
     padding-top: 2px;
     padding-bottom: 6px;
+    padding-right: 5px;
 
     width: 20%;
     border-radius: 5px;
@@ -68,4 +70,8 @@ button.buy{
 button.buy:hover{
     transition: 0.2s;
     font-weight: bold;
+}
+
+button.buy i{
+    color: white;
 }

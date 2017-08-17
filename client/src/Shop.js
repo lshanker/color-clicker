@@ -17,12 +17,16 @@ class Shop extends Component {
         var inShop = []
         var c = 0;
         
-        var descriptions = ['point every minute.', 'points every hour.', 'points every day.']
-        var prices = [200, 2000, 4000]
+        var descriptions = ['point once a  minute.', 'points once an  hour.', 'points once a  day.', 'once every 12 hours.', 'once a day.', 'once every 36 hours.']
+        var prices = [200, 2000, 4000, 10000, 20000, 40000]
 
         Object.keys(this.props.items).forEach((cur) => {
-            inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "add" price = {prices[c]} value = {parseInt(cur.substring(3))} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
-            c++;
+            if(cur.substring(0, 3) === 'add'){
+              inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "add" price = {prices[c]} value = {parseInt(cur.substring(3))} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
+            }else{
+                inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "mul" price = {prices[c]} value = {parseInt(cur.substring(3))} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
+            }
+              c++;
         })
 
 
