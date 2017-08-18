@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Scoreboard.css'
+import base, {auth} from './base'
 
 import TableRow from './TableRow'
 
@@ -8,11 +9,14 @@ class Scoreboard extends Component {
         super()
     }
 
+
+
     render(){
         this.props.leaderboard.forEach(function(data, i){
             console.log(data.child("username").val())
             console.log(data.child("color").val())
             console.log(data.child("score").val() * -1)
+            console.log(data.child('contribution').val())
         })
 
          var rows = [];
@@ -21,7 +25,7 @@ class Scoreboard extends Component {
          var topUser = "";
 
          this.props.leaderboard.forEach(function(value, i){ 
-            rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()} contribution = {value.child("contribution")}/>)
+            rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()} contribution = {value.child('contribution').val()}/>)
             if(c===1){
                 topUser = value.child("username").val()
             }

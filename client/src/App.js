@@ -238,10 +238,17 @@ class App extends Component {
 
 
   
-
+    base.fetch(`users/${this.state.uid}/leaderboardInfo`, {
+      context: this,
+    }).then(data => {
+      console.log('here')
+      console.log(data)
+      this.setState({leaderboardInfo: data})
+    });
 
     if(this.state.possessions.color !== 'gray'){
-    this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
+
+    
 
     base.syncState(
       `leaderboard/${this.state.uid}`,
@@ -481,6 +488,11 @@ class App extends Component {
 
       base.update(`users/${this.state.uid}/leaderboardInfo`, {
         data: this.state.leaderboardInfo
+      });
+
+      base.update(`leaderboard/${this.state.uid}`,{
+        data: this.state.leaderboardInfo
+
       });
 
        base.syncState(
