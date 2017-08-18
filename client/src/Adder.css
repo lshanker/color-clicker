@@ -34,8 +34,11 @@ div.adder{
     box-shadow: 5px 3px 8px #CBCBCB;    
 }
 
+div.adderRow p {
+    display: inline-block;
+}
 
-div.adderRow p{
+ p.owned{
     font-family: 'Bungee', cursive;
     line-height: 20px;
     font-size: 15px;
@@ -43,8 +46,11 @@ div.adderRow p{
     color: black;
 }
 
-div.adderRow p p{
+
+p.rate{
     font-family: 'Pacifico', cursive;
     line-height: 20px;
     font-size: 18px;
+
+    color: black;
 }

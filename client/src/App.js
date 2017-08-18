@@ -283,7 +283,7 @@ class App extends Component {
               colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : null}
-              {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} buttonText = 'Nice!' title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}this.state.possessions.pre
+              {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} buttonText = 'Nice!' title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}
               {(this.state.possessions.curContest < this.state.activeContest) ? <Popup clickHandler = {this.updateContest} buttonText = 'OK' title = "Contest has ended" message = {`While you were away last week's contest ended. The winning team was ${this.state.previousWinner}.`}/>:null}
               </div>
               : <Redirect to="/sign-in"/>
@@ -305,7 +305,7 @@ class App extends Component {
           <Route path="/scoreboard" render={() => (
             this.signedIn()
               ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
-              <Scoreboard leaderboard = {this.state.leaderboard} currentWinner = {this.state.currentWinner}/>
+              <Scoreboard leaderboard = {this.state.leaderboard} currentWinner = {this.state.currentWinner} leaderboardInfo = {this.state.leaderboardInfo}/>
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} />
               </div>
               : <Redirect to="/sign-in"/>
@@ -366,7 +366,14 @@ class App extends Component {
 
     let leaderboardInfo = this.state.leaderboardInfo
     leaderboardInfo.score-=points
+
+    leaderboardInfo.contribution = possessions.given/colors[color];
+
     this.setState({leaderboardInfo})
+
+    base.update(`users/${this.state.uid}/leaderboardInfo`, {
+      data: leaderboardInfo
+    });
   }
 
   checkItems = () =>{
@@ -463,12 +470,19 @@ class App extends Component {
 
 
       //Do leaderboard stuff
-      base.update(`leaderboard/${this.state.uid}`, {
+      var leaderboardInfo = this.state.leaderboardInfo;
+      leaderboardInfo.color = color;
+      leaderboardInfo.username = username;
+      leaderboardInfo.score = this.state.possessions.given;
+      this.setState({leaderboardInfo})
+      
+      console.log('here')
+      console.log(this.state.leaderboardInfo)
+
+      base.update(`users/${this.state.uid}/leaderboardInfo`, {
         data: this.state.leaderboardInfo
       });
 
-      this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
-      
        base.syncState(
             `leaderboard/${this.state.uid}`,
             {
