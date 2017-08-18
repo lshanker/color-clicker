@@ -96,8 +96,15 @@ div.time{
     overflow: visible;
 
     min-width: 120px;
+
+    font-family: 'Pacifico', cursive;
 }
 
 div.time p {
     line-height: 40px;
+    font-size: 20px;
+}
+
+div.time i{
+    color: white;
 }

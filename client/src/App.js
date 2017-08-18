@@ -368,7 +368,7 @@ class App extends Component {
     })
   
     if(newPoints>0){
-      this.setState({newPoints})
+      this.setState({newPoints: Math.ceil(newPoints)})
       this.forceUpdate();
     }
 

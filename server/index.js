@@ -17,10 +17,29 @@ var ref = db.ref("deadline");
 
 var interval = setInterval(() => {
     ref.once("value", function(snapshot) {
-     console.log(snapshot.val());
      if(Date.now()>=snapshot.val()){
          console.log('time is up!')
          ref.set(Date.now() + 5000)
+
+         var winnerRef = db.ref('previousWinner');
+         var colorRef = db.ref('colors')
+
+         colorRef.on('value', function(snapshot){
+            var colors = snapshot.val()
+            var winner = "";
+            var winnerTotal = 0;
+            Object.keys(colors).forEach((cur) => {
+                if(colors[cur] > winnerTotal){
+                    winner = cur;
+                    winnerTotal = colors[cur];
+                }
+           
+            });
+            winnerRef.set(winner);
+         })
+
+        colorRef.set({gold: 0, green: 0, orange: 0, purple: 0, red: 0})
+    
      }
     });
 }, 1000)

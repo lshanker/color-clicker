@@ -82,7 +82,7 @@ class Nav extends Component{
 
         return(
             <div className = "nav teamColorBorderR">
-                <div className = "coverShadow teamColorBackground">  <div className = "time">{(this.state.seconds === null) ? null : <p>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div></div>
+                <div className = "coverShadow teamColorBackground">  <div className = "time">{(this.state.seconds === null) ? null : <p><i className="fa fa-clock-o" aria-hidden="true"></i>{this.state.days}d {this.state.hours}h {this.state.minutes}m {this.state.seconds}s</p>}</div></div>
                 <div className = {`title`} onClick={() => this.props.history.push('/home')}><p className = "teamColor">Color Clicker.</p></div>
                 <div className = "border teamColorBorderT"></div>
                 <div className = "menuOption" onClick={() => this.props.history.push('/home')}><p className = "menuOptionText"><i className = "fa fa-home"></i>Home</p></div>
