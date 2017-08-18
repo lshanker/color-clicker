@@ -29,7 +29,7 @@ p.title{
     min-width: 200px;
 }
 
-p:hover{
+p.logOut:hover{
     cursor: pointer;
 }
 
@@ -41,8 +41,6 @@ p.logOut{
 
     line-height: 40px;
 
-    transition: .5s;
-
     float: right;
 
     text-align: center;
@@ -51,16 +49,14 @@ p.logOut{
     padding-left: 10px;
     padding-right: 5px;
 
-    
 }
 
 p.logOut:hover{
-    background-color: red;
-    transition: .5s;
+    font-weight: bold;
 }
 
 div.squareContainer{
-    width: 700px;
+    width: auto;
     height: 36px;
     margin-left: 450px;
 
@@ -70,9 +66,12 @@ div.squareContainer{
     border-radius: 20px;
 
     padding-left: 10px;
+    padding-right: 20px;
 
     display: flex;
     align-items: center;
+
+    float: left;
 
 
 }

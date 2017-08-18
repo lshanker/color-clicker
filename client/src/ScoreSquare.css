@@ -22,6 +22,8 @@ div.coloredSquare {
 div.squareContainer p {
     color: black;
     display: inline-block;
+
+    font-size: 15px;
 }
 
 i.colorArrow{
