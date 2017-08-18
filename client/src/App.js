@@ -7,7 +7,6 @@ import base, {auth} from './base'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import SignIn from './SignIn'
-import SignOut from './SignOut'
 import Header from './Header'
 import Nav from './Nav'
 import ButtonPage from './ButtonPage'
@@ -396,7 +395,7 @@ class App extends Component {
         var possessions = this.state.possessions;
         if(item.indexOf('add') !== -1){
           var toBeAdded = item.substring(3);
-          var num = parseInt(toBeAdded)
+          var num = parseInt(toBeAdded, 10)
 
           var intervals = Math.floor((Date.now()-items[item].startTime)/items[item].cooldown) //Needed for when the user leaves the website and comes back later
 
@@ -411,23 +410,23 @@ class App extends Component {
           this.setState({items})
         }
 
-        if(item.indexOf('mul') !== -1 && items[item].owned != 0){
+        if(item.indexOf('mul') !== -1 && items[item].owned !== 0){
           var multiplier = '1.' + item.substring(3);
           console.log(multiplier)
 
-          var num = parseFloat(multiplier)
+          var numM = parseFloat(multiplier)
 
-          console.log('num ' + num)
+          console.log('num ' + numM)
 
-          var intervals = Math.floor((Date.now()-items[item].startTime)/items[item].cooldown) //Needed for when the user leaves the website and comes back later
+          var intervalsM = Math.floor((Date.now()-items[item].startTime)/items[item].cooldown) //Needed for when the user leaves the website and comes back later
 
-          if(intervals > 1){
-            newPoints += possessions.points * num * items[item].owned * intervals;
+          if(intervalsM > 1){
+            newPoints += possessions.points * numM * items[item].owned * intervalsM;
           }
 
-          console.log('intervals: ' + intervals)
+          console.log('intervals: ' + intervalsM)
 
-          possessions.points*= (num * items[item].owned * intervals)
+          possessions.points*= (numM * items[item].owned * intervalsM)
 
           console.log(possessions.points)
 

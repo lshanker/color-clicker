@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import './ButtonPage.css';
 
-import firebase from 'firebase/app'
-import 'firebase/database'
-import base, {auth} from './base'
-
 import Adder from './Adder'
 
 class ButtonPage extends Component{
-    constructor(){
-        super()
-
-        var interval;
-    }
 
 
     componentDidMount(){
@@ -32,9 +23,9 @@ class ButtonPage extends Component{
         var times = ['min', 'hr', 'day', '12hr', 'day', '36hr']
         Object.keys(this.props.items).forEach((cur) => {
             if(cur.substring(0, 3) === 'add'){
-              adderRows.push(<Adder key = {c} time = {times[c]} type = "add" owned = {this.props.items[cur].owned} value = {parseInt(cur.substring(3))} teamColor = {this.props.possessions.color}/>)
+              adderRows.push(<Adder key = {c} time = {times[c]} type = "add" owned = {this.props.items[cur].owned} value = {parseInt(cur.substring(3), 10)} teamColor = {this.props.possessions.color}/>)
             }else{
-              multiplierRows.push(<Adder key = {c} time = {times[c]} type = "mul" owned = {this.props.items[cur].owned} value = {`1.${parseInt(cur.substring(3))}`} teamColor = {this.props.possessions.color}/>)
+              multiplierRows.push(<Adder key = {c} time = {times[c]} type = "mul" owned = {this.props.items[cur].owned} value = {`1.${parseInt(cur.substring(3), 10)}`} teamColor = {this.props.possessions.color}/>)
             }
 
             c++;

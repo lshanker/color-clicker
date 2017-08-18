@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 import './ScoreSquare.css'
 
 class ScoreSquare extends Component {
-    constructor () {
-        super()
-    }
-
+    
     render(){
         let divStyle;
 

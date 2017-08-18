@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import './Scoreboard.css'
-import base, {auth} from './base'
 
 import TableRow from './TableRow'
 
 class Scoreboard extends Component {
-    constructor () {
-        super()
-    }
-
 
 
     render(){
@@ -22,13 +17,10 @@ class Scoreboard extends Component {
          var rows = [];
 
          var c = 1;
-         var topUser = "";
 
          this.props.leaderboard.forEach(function(value, i){ 
             rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()} contribution = {value.child('contribution').val()}/>)
-            if(c===1){
-                topUser = value.child("username").val()
-            }
+           
 
             c++
         })
@@ -41,12 +33,12 @@ class Scoreboard extends Component {
         
 
         var bkgElements = document.querySelectorAll(".teamColorBackground")
-        for(var i = 0; i<bkgElements.length; i++){
+        for(i = 0; i<bkgElements.length; i++){
             bkgElements[i].setAttribute("style", `background-color: ${this.props.currentWinner}`)
         }
 
         var bkgElementsAlt = document.querySelectorAll("teamColorBackgroundAlt")
-        for(var i = 0; i<bkgElementsAlt.length; i++){
+        for(i = 0; i<bkgElementsAlt.length; i++){
             console.log('heresadfasfsdaf')
             let newColor = shadeColor2(colorToHex(this.props.currentWinner),  0.5);
             bkgElementsAlt[i].setAttribute("style", `background-color: ${newColor}`)
@@ -57,17 +49,17 @@ class Scoreboard extends Component {
         console.log(shadeColor2(colorToHex(this.props.currentWinner),  0.5))
 
         var borRightElements = document.querySelectorAll(".teamColorBorderR")
-        for(var i = 0; i<borRightElements.length; i++){
+        for(i = 0; i<borRightElements.length; i++){
             borRightElements[i].setAttribute("style", `border-right: solid 1px ${this.props.currentWinner}`)
         }
 
         var borTopElements = document.querySelectorAll(".teamColorBorderT")
-        for(var i = 0; i<borTopElements.length; i++){
+        for(i = 0; i<borTopElements.length; i++){
             borTopElements[i].setAttribute("style", `border-top: solid 1px ${this.props.currentWinner}`)
         }
 
         var borBotElements = document.getElementsByClassName("teamColorBorderB")
-        for(var i = 0; i<borBotElements.length; i++){
+        for(i = 0; i<borBotElements.length; i++){
             console.log('asfasdfasdf')
             borBotElements[i].setAttribute("style", `border-bottom: solid 1px ${this.props.currentWinner}`)
         }
@@ -92,10 +84,7 @@ class Scoreboard extends Component {
 }
 
 
-function blendColors(c0, c1, p) {
-    var f=parseInt(c0.slice(1),16),t=parseInt(c1.slice(1),16),R1=f>>16,G1=f>>8&0x00FF,B1=f&0x0000FF,R2=t>>16,G2=t>>8&0x00FF,B2=t&0x0000FF;
-    return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
-}
+
 
 function shadeColor2(color, percent) {   
     var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;

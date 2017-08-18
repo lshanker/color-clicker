@@ -4,9 +4,7 @@ import './Nav.css'
 import './ButtonPage.css'
 
 class Loan extends Component {
-    constructor () {
-        super()
-    }
+
 
     render(){
         return(

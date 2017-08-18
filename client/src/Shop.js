@@ -6,9 +6,6 @@ import './Shop.css'
 import ShopItem from './ShopItem'
 
 class Shop extends Component {
-    constructor () {
-        super()
-    }
 
 
 
@@ -22,9 +19,9 @@ class Shop extends Component {
 
         Object.keys(this.props.items).forEach((cur) => {
             if(cur.substring(0, 3) === 'add'){
-              inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "add" price = {prices[c]} value = {parseInt(cur.substring(3))} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
+              inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "add" price = {prices[c]} value = {parseInt(cur.substring(3), 10)} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
             }else{
-                inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "mul" price = {prices[c]} value = {parseInt(cur.substring(3))} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
+                inShop.push(<ShopItem purchaseItem = {this.props.purchaseItem} key = {c} type = "mul" price = {prices[c]} value = {parseInt(cur.substring(3), 10)} teamColor = {this.props.teamColor} description = {descriptions[c]}/>)
             }
               c++;
         })

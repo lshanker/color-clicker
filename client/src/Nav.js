@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './Nav.css';
 
-import Timer from './Timer'
-import base, {auth} from './base'
+import base from './base'
 
 class Nav extends Component{
     constructor(){
@@ -62,17 +61,17 @@ class Nav extends Component{
         
 
         var bkgElements = document.querySelectorAll(".teamColorBackground")
-        for(var i = 0; i<bkgElements.length; i++){
+        for(i = 0; i<bkgElements.length; i++){
             bkgElements[i].setAttribute("style", `background-color: ${this.props.currentWinner}`)
         }
 
         var borRightElements = document.querySelectorAll(".teamColorBorderR")
-        for(var i = 0; i<borRightElements.length; i++){
+        for(i = 0; i<borRightElements.length; i++){
             borRightElements[i].setAttribute("style", `border-right: solid 1px ${this.props.currentWinner}`)
         }
 
         var borTopElements = document.querySelectorAll(".teamColorBorderT")
-        for(var i = 0; i<borTopElements.length; i++){
+        for(i = 0; i<borTopElements.length; i++){
             borTopElements[i].setAttribute("style", `border-top: solid 1px ${this.props.currentWinner}`)
         }
         

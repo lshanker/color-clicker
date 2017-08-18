@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Splash.css'
-import BottomBar from './BottomBar'
-import base, {auth} from './base'
+import base from './base'
 
 import ScoreSquare from './ScoreSquare'
 
