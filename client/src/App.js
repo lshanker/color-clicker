@@ -381,6 +381,10 @@ class App extends Component {
     base.update(`users/${this.state.uid}/leaderboardInfo`, {
       data: leaderboardInfo
     });
+
+   base.update(`leaderboard/${this.state.uid}`,{
+      data: leaderboardInfo
+   }); 
   }
 
   checkItems = () =>{
