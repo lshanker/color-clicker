@@ -41,12 +41,12 @@ class App extends Component {
       currentWinner: "gray",
   
       items: {
-          add1: {owned: 0, cooldown: 20000, startTime: 0},
-          add100: {owned: 0, cooldown: 40000, startTime: 0},
-          add3000: {owned: 0, cooldown: 60000, startTime: 0},
-          mul1: {owned: 0, cooldown: 20000, startTime: 0},
-          mul2: {owned: 0, cooldown: 20000, startTime: 0},
-          mul3: {owned: 0, cooldown: 20000, startTime: 0},
+          add1: {owned: 0, cooldown: 60000, startTime: 0},
+          add100: {owned: 0, cooldown: 3600000, startTime: 0},
+          add3000: {owned: 0, cooldown: 86400000, startTime: 0},
+          mul1: {owned: 0, cooldown: 43200000, startTime: 0},
+          mul2: {owned: 0, cooldown: 86400000, startTime: 0},
+          mul3: {owned: 0, cooldown: 129600000, startTime: 0},
       },
 
       newPoints: 0
@@ -224,7 +224,7 @@ class App extends Component {
               possessions = {this.state.possessions} incrementPoints = {this.incrementPoints} 
               colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
-              {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : console.log('Skip setup')}
+              {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : null}
               {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}
               </div>
               : <Redirect to="/sign-in"/>
@@ -326,7 +326,6 @@ class App extends Component {
           if(intervals > 1){
             newPoints += num * items[item].owned * intervals;
           }
-        
 
           possessions.points+=(num * items[item].owned * intervals)
           this.setState({possessions})
@@ -334,6 +333,37 @@ class App extends Component {
           items[item].startTime = Date.now()
           this.setState({items})
         }
+
+        if(item.indexOf('mul') !== -1 && items[item].owned != 0){
+          var multiplier = '1.' + item.substring(3);
+          console.log(multiplier)
+
+          var num = parseFloat(multiplier)
+
+          console.log('num ' + num)
+
+          var intervals = Math.floor((Date.now()-items[item].startTime)/items[item].cooldown) //Needed for when the user leaves the website and comes back later
+
+          if(intervals > 1){
+            newPoints += possessions.points * num * items[item].owned * intervals;
+          }
+
+          console.log('intervals: ' + intervals)
+
+          possessions.points*= (num * items[item].owned * intervals)
+
+          console.log(possessions.points)
+
+          possessions.points = Math.ceil(possessions.points)
+
+          console.log(possessions.points)
+
+          this.setState({possessions})
+          
+          items[item].startTime = Date.now()
+          this.setState({items})
+        }
+
       }
     })
   
