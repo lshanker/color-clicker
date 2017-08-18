@@ -33,7 +33,9 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {username: "", points: 0, color: 'gray', given: 0, contestNumber: 0},
+      possessions: {username: "", points: 0, color: 'gray', given: 0, curContest: 0},
+
+      activeContest: 0,
 
       leaderboardInfo: {username: "", score: 0, color: "gray", contribution: 0.00,},
       leaderboard: {},
@@ -49,7 +51,9 @@ class App extends Component {
           mul3: {owned: 0, cooldown: 129600000, startTime: 0},
       },
 
-      newPoints: 0
+      newPoints: 0,
+      
+      previousWinner: ''
 
     }
   }
@@ -191,19 +195,17 @@ class App extends Component {
       }
     )
 
-    base.fetch(`contestNumber`, {
+    base.fetch(`activeContest`, {
       context: this,
     }).then(data => {
 
-      console.log('here')
+      this.setState({activeContest: data})
       console.log(data)
-      if(data>this.state.possessions.contestNumber){
-        console.log('here2')
+      if(data>this.state.possessions.curContest){
 
         var possessions = this.state.possessions;
         possessions.points = 0;
         possessions.given = 0;
-        possessions.contestNumber = data;
 
         var leaderboardInfo = this.state.leaderboardInfo;
         leaderboardInfo.score = 0;
@@ -216,9 +218,27 @@ class App extends Component {
         this.setState({possessions})
         this.setState({leaderboardInfo}) 
         this.setState({items})
-
       }
+
     }); 
+
+    base.fetch('previousWinner', {
+      context: this,
+    }).then(data => {
+      var possessions = this.state.possessions;
+      possessions.previousWinner = data;
+      this.setState({possessions})
+    });
+
+
+    base.syncState('previousWinner', {
+      context: this,
+      state: 'previousWinner'
+    })
+
+
+  
+
 
     if(this.state.possessions.color !== 'gray'){
     this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
@@ -228,6 +248,14 @@ class App extends Component {
       {
         context: this,
         state: 'leaderboardInfo'
+      }
+    )
+
+    base.syncState(
+      'activeContest',
+      {
+        context: this,
+        state: 'activeContest'
       }
     )
 
@@ -255,7 +283,8 @@ class App extends Component {
               colors = {this.state.colors} incrementTeam = {this.incrementTeam} newPoints = {this.state.newPoints} checkItems = {this.checkItems} items = {this.state.items}/> 
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : null}
-              {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}
+              {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} buttonText = 'Nice!' title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}this.state.possessions.pre
+              {(this.state.possessions.curContest < this.state.activeContest) ? <Popup clickHandler = {this.updateContest} buttonText = 'OK' title = "Contest has ended" message = {`While you were away last week's contest ended. The winning team was ${this.state.previousWinner}.`}/>:null}
               </div>
               : <Redirect to="/sign-in"/>
           )} />
@@ -447,6 +476,14 @@ class App extends Component {
               state: 'leaderboardInfo'
             }
           )
+
+          this.updateContest()
+    }
+
+    updateContest = () => {
+      var possessions = this.state.possessions;
+      possessions.curContest = this.state.activeContest;
+      this.setState({possessions})
     }
 
 

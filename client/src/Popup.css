@@ -32,6 +32,8 @@ div.popupBox2{
     box-shadow: 2px 2px 10px gray;
 
     text-align: center;
+
+    padding-right: 20px;
 }
 
 div.popupBox2 h1{
@@ -55,6 +57,7 @@ div.popupBox2 p{
     color: black;
     
     width: 100%;
+
 }
 
 button.confirm{

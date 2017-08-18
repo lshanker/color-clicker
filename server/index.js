@@ -14,38 +14,47 @@ admin.initializeApp({
 // As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
 var ref = db.ref("deadline");
+var winnerRef = db.ref('previousWinner');
+var numRef = db.ref('activeContest')
+
 
 var interval = setInterval(() => {
     ref.once("value", function(snapshot) {
      if(Date.now()>=snapshot.val()){
          console.log('time is up!')
-         ref.set(Date.now() + 20000)
+         ref.set(Date.now() + 10000)
 
-         var winnerRef = db.ref('previousWinner');
-         var colorRef = db.ref('colors')
-         var numRef = db.ref('contestNumber')
-
+         
 
         numRef.transaction(function(current_value) {
             return(current_value + 1)
         });
        
        
-
-         colorRef.on('value', function(snapshot){
+        var colorRef = db.ref('colors')
+         colorRef.once('value', function(snapshot){
             var colors = snapshot.val()
+            
+            console.log(colors)
+            console.log('in here')
+
             var winner = "";
             var winnerTotal = 0;
             Object.keys(colors).forEach((cur) => {
+                console.log(cur + " " + colors[cur])
                 if(colors[cur] > winnerTotal){
                     winner = cur;
                     winnerTotal = colors[cur];
                 }
             });
+        
+            console.log('winner: ' + winner)
             winnerRef.set(winner);
+
+            colorRef.set({gold: 0, green: 0, orange: 0, purple: 0, red: 0})
          })
 
-        colorRef.set({gold: 0, green: 0, orange: 0, purple: 0, red: 0})
+        
     
      }
     });
