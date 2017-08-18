@@ -77,7 +77,7 @@ class Scoreboard extends Component {
         return(
             <div className = "scoreboardContainer">
                 <p className = "you teamColor">You</p>
-                <h1 className = "banner" style = {{backgroundColor: shadeColor2(colorToHex(this.props.currentWinner),  0.8), color: this.props.currentWinner}}>Contribution {this.props.leaderboardInfo.contribution * 100}%</h1>
+                <h1 className = "banner" style = {{backgroundColor: shadeColor2(colorToHex(this.props.currentWinner),  0.8), color: this.props.currentWinner}}>Contribution {(this.props.leaderboardInfo.contribution * 100).toFixed(2)}%</h1>
                 <table>
                     <tbody>
                     <tr className = "teamColorBorderB" style = {{borderBottom: 'solid 1px ' + this.props.currentWinner}}>

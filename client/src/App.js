@@ -291,7 +291,7 @@ class App extends Component {
                <Nav history={this.props.history} currentWinner={this.state.currentWinner} uid = {this.state.uid}/> 
               {this.state.possessions.color === 'gray' ? <FirstTimeSetup colors = {this.state.colors} setup = {this.setup}/> : null}
               {(this.state.newPoints > 0) ? <Popup clickHandler = {this.resetNewpoints} buttonText = 'Nice!' title = "Points Earned" message = {`While you were away you earned ${this.state.newPoints} points!`}/> : null}
-              {(this.state.possessions.curContest < this.state.activeContest) ? <Popup clickHandler = {this.updateContest} buttonText = 'OK' title = "Contest has ended" message = {`While you were away last week's contest ended. The winning team was ${this.state.previousWinner}.`}/>:null}
+              {((this.state.possessions.curContest < this.state.activeContest) && this.state.possessions.username !== '') ? <Popup clickHandler = {this.updateContest} buttonText = 'OK' title = "Contest has ended" message = {`While you were away last week's contest ended. The winning team was ${this.state.previousWinner}.`}/>:null}
               </div>
               : <Redirect to="/sign-in"/>
           )} />
