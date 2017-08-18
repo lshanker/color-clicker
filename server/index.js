@@ -19,10 +19,18 @@ var interval = setInterval(() => {
     ref.once("value", function(snapshot) {
      if(Date.now()>=snapshot.val()){
          console.log('time is up!')
-         ref.set(Date.now() + 5000)
+         ref.set(Date.now() + 20000)
 
          var winnerRef = db.ref('previousWinner');
          var colorRef = db.ref('colors')
+         var numRef = db.ref('contestNumber')
+
+
+        numRef.transaction(function(current_value) {
+            return(current_value + 1)
+        });
+       
+       
 
          colorRef.on('value', function(snapshot){
             var colors = snapshot.val()
@@ -33,7 +41,6 @@ var interval = setInterval(() => {
                     winner = cur;
                     winnerTotal = colors[cur];
                 }
-           
             });
             winnerRef.set(winner);
          })

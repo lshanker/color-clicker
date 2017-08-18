@@ -33,7 +33,7 @@ class App extends Component {
 
       uid: null,
 
-      possessions: {username: "", points: 0, color: 'gray', given: 0},
+      possessions: {username: "", points: 0, color: 'gray', given: 0, contestNumber: 0},
 
       leaderboardInfo: {username: "", score: 0, color: "gray", contribution: 0.00,},
       leaderboard: {},
@@ -89,11 +89,10 @@ class App extends Component {
       this.setState({leaderboard: data})
     })
 
+
     
     
   
-
-   
    
    
   }
@@ -192,6 +191,35 @@ class App extends Component {
       }
     )
 
+    base.fetch(`contestNumber`, {
+      context: this,
+    }).then(data => {
+
+      console.log('here')
+      console.log(data)
+      if(data>this.state.possessions.contestNumber){
+        console.log('here2')
+
+        var possessions = this.state.possessions;
+        possessions.points = 0;
+        possessions.given = 0;
+        possessions.contestNumber = data;
+
+        var leaderboardInfo = this.state.leaderboardInfo;
+        leaderboardInfo.score = 0;
+
+        var items = this.state.items;
+        Object.keys(items).forEach((item) => {
+          items[item].owned = 0;
+        });
+
+        this.setState({possessions})
+        this.setState({leaderboardInfo}) 
+        this.setState({items})
+
+      }
+    }); 
+
     if(this.state.possessions.color !== 'gray'){
     this.setState({leaderboardInfo: {username: this.state.possessions.username, score: this.state.possessions.given, color: this.state.possessions.color}})
 
@@ -204,6 +232,8 @@ class App extends Component {
     )
 
     }
+
+
 
     }).catch(error => {
 
