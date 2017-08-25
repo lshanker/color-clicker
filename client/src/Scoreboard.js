@@ -7,21 +7,14 @@ class Scoreboard extends Component {
 
 
     render(){
-        this.props.leaderboard.forEach(function(data, i){
-            console.log(data.child("username").val())
-            console.log(data.child("color").val())
-            console.log(data.child("score").val() * -1)
-            console.log(data.child('contribution').val())
-        })
 
          var rows = [];
 
          var c = 1;
 
-         this.props.leaderboard.forEach(function(value, i){ 
-            rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} score = {value.child("score").val() * -1} username = {value.child("username").val()} contribution = {value.child('contribution').val()}/>)
+         this.props.leaderboard.forEach((value, i) =>{ 
+            rows.push(<TableRow key = {c} rank = {c} color = {value.child("color").val()} colors = {this.props.colors} score = {value.child("score").val() * -1} username = {value.child("username").val()}/>)
            
-
             c++
         })
 
@@ -39,14 +32,10 @@ class Scoreboard extends Component {
 
         var bkgElementsAlt = document.querySelectorAll("teamColorBackgroundAlt")
         for(i = 0; i<bkgElementsAlt.length; i++){
-            console.log('heresadfasfsdaf')
             let newColor = shadeColor2(colorToHex(this.props.currentWinner),  0.5);
             bkgElementsAlt[i].setAttribute("style", `background-color: ${newColor}`)
         }
 
-        console.log(this.props.currentWinner)
-        console.log(colorToHex(this.props.currentWinner))
-        console.log(shadeColor2(colorToHex(this.props.currentWinner),  0.5))
 
         var borRightElements = document.querySelectorAll(".teamColorBorderR")
         for(i = 0; i<borRightElements.length; i++){
@@ -60,7 +49,6 @@ class Scoreboard extends Component {
 
         var borBotElements = document.getElementsByClassName("teamColorBorderB")
         for(i = 0; i<borBotElements.length; i++){
-            console.log('asfasdfasdf')
             borBotElements[i].setAttribute("style", `border-bottom: solid 1px ${this.props.currentWinner}`)
         }
 
@@ -69,7 +57,7 @@ class Scoreboard extends Component {
         return(
             <div className = "scoreboardContainer">
                 <p className = "you teamColor">You</p>
-                <h1 className = "banner" style = {{backgroundColor: shadeColor2(colorToHex(this.props.currentWinner),  0.8), color: this.props.currentWinner}}>Contribution {(this.props.leaderboardInfo.contribution * 100).toFixed(2)}%</h1>
+                <h1 className = "banner" style = {{backgroundColor: shadeColor2(colorToHex(this.props.currentWinner),  0.8), color: this.props.currentWinner}}>Contribution IMPLEMENT-THIS%</h1>
                 <table>
                     <tbody>
                     <tr className = "teamColorBorderB" style = {{borderBottom: 'solid 1px ' + this.props.currentWinner}}>

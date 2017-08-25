@@ -36,7 +36,7 @@ class App extends Component {
 
       activeContest: 0,
 
-      leaderboardInfo: {username: "", score: 0, color: "gray", contribution: 0.00,},
+      leaderboardInfo: {username: "", score: 0, color: "gray"},
       leaderboard: {},
 
       currentWinner: "gray",
@@ -122,7 +122,7 @@ class App extends Component {
     }
 
     signOut = () => {
-      console.log('here')
+
         auth
             .signOut()
             .then(() => {
@@ -199,7 +199,7 @@ class App extends Component {
     }).then(data => {
 
       this.setState({activeContest: data})
-      console.log(data)
+
       if(data>this.state.possessions.curContest){
 
         var possessions = this.state.possessions;
@@ -240,8 +240,7 @@ class App extends Component {
     base.fetch(`users/${this.state.uid}/leaderboardInfo`, {
       context: this,
     }).then(data => {
-      console.log('here')
-      console.log(data)
+
       this.setState({leaderboardInfo: data})
     });
 
@@ -311,7 +310,7 @@ class App extends Component {
           <Route path="/scoreboard" render={() => (
             this.signedIn()
               ?<div><Header colorScores = {this.state.colorScores} colors = {this.state.colors} signOut = {this.signOut} history={this.props.history} currentWinner={this.state.currentWinner}/>
-              <Scoreboard leaderboard = {this.state.leaderboard} currentWinner = {this.state.currentWinner} leaderboardInfo = {this.state.leaderboardInfo}/>
+              <Scoreboard leaderboard = {this.state.leaderboard} currentWinner = {this.state.currentWinner} leaderboardInfo = {this.state.leaderboardInfo} colors = {this.state.colors}/>
               <Nav history={this.props.history} currentWinner={this.state.currentWinner} />
               </div>
               : <Redirect to="/sign-in"/>
@@ -373,7 +372,6 @@ class App extends Component {
     let leaderboardInfo = this.state.leaderboardInfo
     leaderboardInfo.score-=points
 
-    leaderboardInfo.contribution = possessions.given/colors[color];
 
     this.setState({leaderboardInfo})
 
@@ -412,11 +410,10 @@ class App extends Component {
 
         if(item.indexOf('mul') !== -1 && items[item].owned !== 0){
           var multiplier = '1.' + item.substring(3);
-          console.log(multiplier)
+            
 
           var numM = parseFloat(multiplier)
 
-          console.log('num ' + numM)
 
           var intervalsM = Math.floor((Date.now()-items[item].startTime)/items[item].cooldown) //Needed for when the user leaves the website and comes back later
 
@@ -424,15 +421,12 @@ class App extends Component {
             newPoints += possessions.points * numM * items[item].owned * intervalsM;
           }
 
-          console.log('intervals: ' + intervalsM)
 
           possessions.points*= (numM * items[item].owned * intervalsM)
 
-          console.log(possessions.points)
 
           possessions.points = Math.ceil(possessions.points)
 
-          console.log(possessions.points)
 
           this.setState({possessions})
           
@@ -485,9 +479,7 @@ class App extends Component {
       leaderboardInfo.username = username;
       leaderboardInfo.score = this.state.possessions.given;
       this.setState({leaderboardInfo})
-      
-      console.log('here')
-      console.log(this.state.leaderboardInfo)
+
 
       base.update(`users/${this.state.uid}/leaderboardInfo`, {
         data: this.state.leaderboardInfo

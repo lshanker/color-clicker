@@ -29,7 +29,7 @@ class TableRow extends Component{
 
         return(
             <tr>
-              <td className = "teamColorBorderR">#{this.props.rank}</td><td className = "teamColorBorderR">{this.props.username}</td><td className = "teamColorBorderR">{this.props.score}</td><td className = "teamColorBorderR"><ScoreSquare color = {this.props.color} showPoints = {null}/></td><td>{(this.props.contribution * 100).toFixed(2)}%</td>
+              <td className = "teamColorBorderR">#{this.props.rank}</td><td className = "teamColorBorderR">{this.props.username}</td><td className = "teamColorBorderR">{this.props.score}</td><td className = "teamColorBorderR"><ScoreSquare color = {this.props.color} showPoints = {null}/></td><td>{this.props.score === 0 ? 0 : ((this.props.score/this.props.colors[this.props.color])*100).toFixed(2)}%</td>
             </tr>
         )
     }

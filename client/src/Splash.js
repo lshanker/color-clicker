@@ -57,7 +57,6 @@ class Splash extends Component {
     render(){
         var elements = document.querySelectorAll(".teamColorBackground")
         for(var i = 0; i<elements.length; i++){
-            console.log(this.props.currentWinner)
             elements[i].setAttribute("style", `background-color: ${this.props.currentWinner}`)
         }
         

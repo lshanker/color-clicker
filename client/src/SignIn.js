@@ -6,7 +6,6 @@ import {auth, googleProvider} from './base'
 const SignIn = () => {
 
  const authenticateGoogle = () => {
-        console.log(googleProvider)
         auth.signInWithPopup(googleProvider)
  }
 
